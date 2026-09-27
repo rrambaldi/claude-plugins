@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "rrambaldi-plugins",
+  "version": "1.0.0",
+  "description": "Plugin personali per Claude",
+  "owner": {
+    "name": "rrambaldi"
+  },
+  "plugins": [
+    {
+      "name": "limam-adhibere",
+      "description": "Analisi critica di un'idea e piano d'azione. Limam adhibere / -LA completa, Celeri lima adhibita / -CLA rapida.",
+      "version": "1.0.0",
+      "source": "./plugins/limam-adhibere",
+      "category": "productivity"
+    }
+  ]
+}
