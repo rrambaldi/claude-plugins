@@ -22,7 +22,7 @@ print(json.dumps({"hookSpecificOutput": {"hookEventName": "SubagentStart", "addi
     # Conta solo se il messaggio comincia con il comando: citarlo a metà frase non cambia niente.
     new=$(python3 -c 'import json, re, sys
 p = json.load(sys.stdin).get("prompt", "").strip().lower()
-m = re.match(r"/?-?(npqo|nec-plus-quam-oportet)(\s+(lite|full|ultra|off))?(\s|$)", p)
+m = re.match(r"/?-?(npqo|nec-plus-quam-oportet)\b(\s+(lite|full|ultra|off)\b)?", p)
 if m:
     print(m.group(3) or "full")
 elif re.match(r"(stop nec plus|normal mode)\b", p):
