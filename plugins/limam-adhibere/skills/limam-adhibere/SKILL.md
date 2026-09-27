@@ -110,8 +110,7 @@ Già fatto: [ricerche, prototipi, conversazioni con potenziali clienti...]
 All'inizio del blocco A classifica l'idea: commerciale (B2B, B2C, B2B2C), progetto interno
 aziendale, oppure personale / open source / non profit. Per le idee non commerciali adatta i
 concetti: "cliente" diventa utente o stakeholder, "disponibilità a pagare" diventa costo di
-adozione e sponsor, "modello di business" diventa sostenibilità (chi paga i costi, chi mantiene
-la soluzione nel tempo).
+adozione e sponsor.
 
 ## Cancello iniziale
 
@@ -121,34 +120,24 @@ conclusioni: chi è il cliente, qual è l'obiettivo, se esistono vincoli che esc
 - **Se sì**: riformula l'idea in 2-3 righe per mostrare cosa hai capito, fai al massimo 5 domande
   ordinate per impatto sulle conclusioni, proponi il modello di input e fermati. Un'analisi
   costruita su ipotesi sbagliate va rifatta, e le risposte arrivate dopo non servono più.
-- **Se no**: procedi e dichiara in un breve elenco le assunzioni che fai. L'utente le correggerà a
-  fine blocco.
+- **Se no**: procedi. Le assunzioni che fai vanno nell'ultimo punto del blocco A, dove l'utente
+  le corregge.
 
 Usa ciò che già sai di chi propone (dalla conversazione o dal contesto disponibile) invece di
 chiederlo di nuovo.
 
 ## Blocco A — Capire
 
-1. **Sintesi.** L'idea in una frase, poi al massimo 10 righe su problema, chi lo vive, soluzione,
-   beneficio concreto e contesto d'uso. Segnala ambiguità e contraddizioni nella formulazione.
-2. **Problema e valore.** Quanto è frequente e doloroso il problema; come viene risolto oggi e a
-   che costo; chi sostiene il costo del problema e chi decide l'acquisto o l'adozione (spesso non
-   coincidono); cosa renderebbe la soluzione inutile. Chiudi con la proposta di valore in una
-   frase.
-3. **Destinatari.** I segmenti plausibili, ciascuno con esigenza, modalità di acquisto o adozione
-   e barriere. Indica da quale segmento partire e perché.
-4. **Alternative.** Concorrenti diretti, indiretti, soluzioni manuali e il non fare nulla. Dove i
-   dati ci sono, confronta funzioni, prezzo, target e limiti. Indica la differenziazione
-   possibile, oppure dichiara che non se ne vede una solida. Stima il mercato solo con una base
-   dati, distinguendo mercato complessivo, raggiungibile e acquisibile all'inizio: un mercato
-   grande non prova che esista domanda per questa idea.
-5. **Perché tu.** Il vantaggio specifico di chi propone (competenze, rete, clienti, asset,
-   accesso a dati o canali) e ciò che manca. Se il vantaggio è nullo, anche questo è
-   un'informazione importante.
-6. **Ipotesi emerse.** Elenco breve, con etichetta `[I]`, delle ipotesi da cui dipende l'idea.
-   Servono al blocco C.
+Serve solo a far controllare all'utente che l'idea sia stata capita. Al massimo 30 righe:
+un blocco che non viene letto non viene corretto.
 
-Chiudi con le assunzioni da confermare (se ne hai fatte) e con la riga:
+1. **Cosa ho capito.** L'idea in una frase, con il tipo (sezione "Tipo di idea"), chi ha il
+   problema e come lo risolve oggi. Segnala ambiguità e contraddizioni, se ci sono.
+2. **Da chi partire.** Il segmento iniziale, in una riga.
+3. **Ipotesi e assunzioni**, al massimo 5, con etichetta `[I]`: quelle da cui dipende l'idea e
+   quelle fatte per procedere. È la lista che l'utente deve controllare, e serve al blocco C.
+
+Chiudi con la riga:
 *"Scrivi **prosegui** per il blocco B (valutazione), oppure correggi prima ciò che non torna."*
 
 ## Blocco B — Valutare
@@ -162,7 +151,8 @@ esplicitamente.
 
    Strutturale: legato alla natura dell'idea o del mercato, difficile da cambiare. Risolvibile:
    superabile con azioni specifiche. È questa distinzione a dire se un contro è un ostacolo o una
-   condanna.
+   condanna. Tra le righe, se pesano: le alternative (compreso il non fare nulla) e il vantaggio
+   di chi propone, o la sua assenza.
 2. **Fattori fatali.** Ciò che comprometterebbe il progetto anche se tutto il resto andasse bene.
    Se non ne vedi, dillo.
 3. **Varianti**, solo quelle sensate:
@@ -172,14 +162,11 @@ esplicitamente.
 
    Per ciascuna: cosa cambia, benefici, nuovi rischi, risorse, quale ipotesi verifica. Valuta
    anche se restringere il target, cambiare cliente o modello di ricavo, tagliare funzioni.
-4. **Fattibilità**, solo per le dimensioni pertinenti: tecnica; operativa; commerciale (canali,
-   ciclo di vendita, pricing); economica (voci di costo iniziali, ricorrenti e variabili, con stime
-   solo su ipotesi esplicite); legale e normativa (ambiti da approfondire, senza conclusioni legali
-   definitive). Per ciascuna: cosa è noto, cosa è incerto, come verificarlo.
-5. **Modello di business** (solo per idee commerciali). Da uno a tre modelli plausibili, ciascuno
-   con cliente pagante, monetizzazione, costi, limiti e ipotesi da validare. Poi una prima ipotesi
-   di prezzo e come testarla. Non presumere che il ricorrente sia sempre meglio dell'una tantum.
-6. **Costo opportunità.** A cosa si rinuncia impegnando lo stesso tempo e budget, e a quali
+4. **Fattibilità**, solo per le dimensioni pertinenti: tecnica; operativa; economica (voci di
+   costo iniziali, ricorrenti e variabili, con stime solo su ipotesi esplicite); legale e
+   normativa (ambiti da approfondire, senza conclusioni legali definitive). Per ciascuna: cosa è
+   noto, cosa è incerto, come verificarlo.
+5. **Costo opportunità.** A cosa si rinuncia impegnando lo stesso tempo e budget, e a quali
    condizioni l'idea batte gli impieghi alternativi. Quando il tempo è la risorsa scarsa, spesso è
    il criterio decisivo.
 
