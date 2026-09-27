@@ -13,6 +13,13 @@
       "version": "1.0.0",
       "source": "./plugins/limam-adhibere",
       "category": "productivity"
+    },
+    {
+      "name": "inspectio-decoris",
+      "description": "Analisi UX ed estetica di app web esistenti (Inspectio decoris / -ID) e restyle verificato fase per fase (Sequere pulchritudinem / -SP).",
+      "version": "1.0.0",
+      "source": "./plugins/inspectio-decoris",
+      "category": "development"
     }
   ]
 }
