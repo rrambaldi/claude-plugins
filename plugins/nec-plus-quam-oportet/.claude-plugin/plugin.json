@@ -1,0 +1,12 @@
+{
+  "name": "nec-plus-quam-oportet",
+  "version": "1.0.0",
+  "description": "Modalità di lavoro per tutta la sessione, basata su ponytail: la soluzione più semplice che funziona, riuso di codice e API esistenti, costanti invece di stringhe ripetute, niente duplicati, errori mai ingoiati, DefunctumEst. Include Vitium ostendere (-VO): bug corretti partendo da un test che fallisce. /nec-plus-quam-oportet o -NPQO [lite|full|ultra|off].",
+  "author": {
+    "name": "rrambaldi"
+  },
+  "license": "MIT",
+  "dependencies": [
+    "sine-more-interposita"
+  ]
+}

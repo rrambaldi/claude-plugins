@@ -1,12 +1,68 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
-  "name": "rrambaldi-plugins",
+  "name": "armamentarium",
   "version": "1.0.0",
-  "description": "Plugin personali per Claude",
+  "description": "Armamentarium: plugin personali per Claude. Il plugin omnia li installa tutti insieme.",
   "owner": {
     "name": "rrambaldi"
   },
   "plugins": [
+    {
+      "name": "omnia",
+      "description": "Tutto l'armamentarium in un colpo solo: tutte le skill di tutti i plugin, con i loro hook.",
+      "version": "1.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./plugins/festina-lente/skills/alea-iacta-est",
+        "./plugins/festina-lente/skills/festina-lente",
+        "./plugins/inspectio-decoris/skills/inspectio-decoris",
+        "./plugins/inspectio-decoris/skills/sequere-pulchritudinem",
+        "./plugins/limam-adhibere/skills/limam-adhibere",
+        "./plugins/nec-plus-quam-oportet/skills/nec-plus-quam-oportet",
+        "./plugins/nec-plus-quam-oportet/skills/vitium-ostendere",
+        "./plugins/sine-more-interposita/skills/sine-more-interposita",
+        "./plugins/status-rei/skills/status-rei",
+        "./plugins/summa-rerum/skills/summa-rerum"
+      ],
+      "hooks": {
+        "SessionStart": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/plugins/sine-more-interposita\" bash \"${CLAUDE_PLUGIN_ROOT}/plugins/sine-more-interposita/hooks/session-start.sh\""
+              },
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/plugins/nec-plus-quam-oportet\" bash \"${CLAUDE_PLUGIN_ROOT}/plugins/nec-plus-quam-oportet/hooks/load-rules.sh\""
+              }
+            ]
+          }
+        ],
+        "SubagentStart": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/plugins/nec-plus-quam-oportet\" bash \"${CLAUDE_PLUGIN_ROOT}/plugins/nec-plus-quam-oportet/hooks/load-rules.sh\" subagent"
+              }
+            ]
+          }
+        ],
+        "UserPromptSubmit": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/plugins/nec-plus-quam-oportet\" bash \"${CLAUDE_PLUGIN_ROOT}/plugins/nec-plus-quam-oportet/hooks/load-rules.sh\" prompt"
+              }
+            ]
+          }
+        ]
+      },
+      "category": "productivity"
+    },
     {
       "name": "limam-adhibere",
       "description": "Analisi critica di un'idea e piano d'azione. Limam adhibere / -LA completa, Celeri lima adhibita / -CLA rapida.",
@@ -20,6 +76,41 @@
       "version": "1.0.0",
       "source": "./plugins/inspectio-decoris",
       "category": "development"
+    },
+    {
+      "name": "sine-more-interposita",
+      "description": "Modalità di lavoro per tutta la sessione, basata su modalità fastidio: finire davvero, agire invece di chiedere, andare veloce, risposte corte. /sine-more-interposita o -SMI.",
+      "version": "1.0.0",
+      "source": "./plugins/sine-more-interposita",
+      "category": "productivity"
+    },
+    {
+      "name": "nec-plus-quam-oportet",
+      "description": "Modalità di lavoro per tutta la sessione, basata su ponytail: la soluzione più semplice che funziona, riuso di codice e API esistenti, costanti, niente duplicati, DefunctumEst. Include Vitium ostendere / -VO (bug corretti partendo da un test che fallisce). /nec-plus-quam-oportet o -NPQO [lite|full|ultra|off].",
+      "version": "1.0.0",
+      "source": "./plugins/nec-plus-quam-oportet",
+      "category": "development"
+    },
+    {
+      "name": "status-rei",
+      "description": "Statusline su richiesta: modello, effort, cartella, branch, contesto usato e badge delle modalità attive. /status-rei o -STR (-STR off per disattivare).",
+      "version": "1.0.0",
+      "source": "./plugins/status-rei",
+      "category": "productivity"
+    },
+    {
+      "name": "summa-rerum",
+      "description": "Elenca plugin e skill di questo marketplace, con cosa fanno e come si attivano e quali sono sempre attive: l'help del marketplace. /summa-rerum o -SR.",
+      "version": "1.0.0",
+      "source": "./plugins/summa-rerum",
+      "category": "productivity"
+    },
+    {
+      "name": "festina-lente",
+      "description": "Eseguire un piano lungo senza di te. Festina lente / -FL: le attività con decisioni che costano refactoring si fermano, si prosegue con le altre, i debiti finiscono in un file da controllare. Alea iacta est / -AIE: Claude decide anche quelle, con tre opzioni, isola la scelta in un punto e la registra in un artefatto.",
+      "version": "1.0.0",
+      "source": "./plugins/festina-lente",
+      "category": "productivity"
     }
   ]
 }

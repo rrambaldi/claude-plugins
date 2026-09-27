@@ -1,0 +1,35 @@
+{
+  "description": "Carica nec plus quam oportet a ogni avvio (anche dopo /clear e compattazione) e in ogni subagent, e segue il livello scelto con -NPQO",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/load-rules.sh\""
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/load-rules.sh\" subagent"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/load-rules.sh\" prompt"
+          }
+        ]
+      }
+    ]
+  }
+}

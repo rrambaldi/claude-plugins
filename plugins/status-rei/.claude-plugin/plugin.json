@@ -1,0 +1,8 @@
+{
+  "name": "status-rei",
+  "version": "1.0.0",
+  "description": "Statusline su richiesta: modello, effort, cartella, branch, contesto usato e badge delle modalità attive (nec plus, fastidio, sine mora). /status-rei o -STR (-STR off per disattivare).",
+  "author": {
+    "name": "rrambaldi"
+  }
+}

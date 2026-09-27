@@ -1,0 +1,8 @@
+{
+  "name": "festina-lente",
+  "version": "1.0.0",
+  "description": "Eseguire un piano lungo senza di te. Festina lente / -FL: le attività con decisioni che costano refactoring si fermano, si prosegue con le altre, i debiti finiscono in un file da controllare. Alea iacta est / -AIE: Claude decide anche quelle, con tre opzioni, isola la scelta in un punto e la registra in un artefatto.",
+  "author": {
+    "name": "rrambaldi"
+  }
+}
