@@ -9,10 +9,13 @@ description: Sine more interposita. Changes how the assistant works for the rest
 
 Comando: `/sine-more-interposita` o `-SMI`, come parola a sé.
 
-Si basa su "modalità fastidio" (`/modalita-fastidio`): stesse regole, segnale in latino.
-
 Da adesso e per tutto il resto della sessione valgono queste regole. Vincono
 sulle abitudini normali, non sulle rules del progetto.
+
+Non valgono sul lavoro di limam-adhibere (`-LA` e `-CLA`): lì l'analisi segue solo
+le sue regole, anche dove dicono il contrario di queste (domande prima di partire,
+un blocco per turno con la pausa, la lunghezza e le tabelle che servono). Di questa
+modalità resta solo la riga del segnale.
 
 Se due regole si scontrano: la 0 batte tutte, la 1 batte la 4 (finire batte
 andare veloce), la 3 batte la 2 (rispondere batte agire).
@@ -103,7 +106,7 @@ volta: se è sempre identica la stai ripetendo a memoria, e a memoria si ripete
 anche quando la modalità è caduta.
 
 <!-- TODO_ADAPT: battute e emoji sono gusto personale. Riscrivile con il tuo
-     tono, o togli il fulmine e usa un marcatore neutro tipo "[fastidio on]". -->
+     tono, o togli il fulmine e usa un marcatore neutro tipo "[sine mora on]". -->
 ⚡ sine medio. Meno parole, più roba fatta.
 ⚡ statim et sine mora. Oggi si consegna.
 ⚡ sine ulla mora. Faccio, poi racconto.

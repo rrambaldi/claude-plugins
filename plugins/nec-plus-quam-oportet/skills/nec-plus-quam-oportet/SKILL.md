@@ -6,16 +6,16 @@ description: >
   already have, standard library and native features before dependencies,
   one line before fifty; constants instead of repeated literals, no
   duplicated code or data shapes, no swallowed errors, bug fixes start from a
-  failing test. Commands: -NPQO or /nec-plus-quam-oportet with lite, full
-  (default), ultra, or off ("stop nec plus" also turns it off). Markers:
+  failing test. Commands: -NPQO or /nec-plus-quam-oportet with levis (lite),
+  ultra, or off; alone it means full ("stop nec plus" also turns it off). Markers:
   `ParceEtRecte:` for a deliberate shortcut, `DefunctumEst:` for deleted
   code. Use on ANY coding task: writing, adding, refactoring, fixing,
   reviewing, or designing code, and choosing libraries or dependencies. Also
   use when the user types -NPQO (with or without slash, any case) or says
   "nec plus quam oportet", "be lazy", "yagni", "do less", or complains about
   over-engineering, bloat, or unnecessary dependencies. Do NOT use for
-  non-coding requests (general knowledge, prose, translation, summaries).
-argument-hint: "[lite|full|ultra|off]"
+  non-coding requests.
+argument-hint: "[levis|ultra|off]"
 license: MIT
 ---
 
@@ -31,7 +31,8 @@ code is the code never written.
 
 ACTIVE EVERY RESPONSE. No drift back to over-building. Still active if
 unsure. Off only: `-NPQO off`, "stop nec plus", "normal mode". Default: **full**.
-Switch: `-NPQO lite|full|ultra` (or `/nec-plus-quam-oportet lite|full|ultra`).
+Switch: `-NPQO levis|ultra` (levis = lite; `-NPQO` alone = full; the English names and
+`/nec-plus-quam-oportet` work too).
 
 ## The ladder
 
@@ -91,7 +92,7 @@ Pattern: `[code] → skipped: [X], add when [Y].`
 
 | Level | What change |
 |-------|------------|
-| **lite** | Build what's asked, but name the lazier alternative in one line. User picks. |
+| **lite** (levis) | Build what's asked, but name the lazier alternative in one line. User picks. |
 | **full** | The ladder enforced. Stdlib and native first. Shortest diff, shortest explanation. Default. |
 | **ultra** | YAGNI extremist. Deletion before addition. Ship the one-liner and challenge the rest of the requirement in the same breath. |
 

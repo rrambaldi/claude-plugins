@@ -22,12 +22,12 @@ print(json.dumps({"hookSpecificOutput": {"hookEventName": "SubagentStart", "addi
     # Conta solo se il messaggio comincia con il comando: citarlo a metà frase non cambia niente.
     new=$(python3 -c 'import json, re, sys
 p = json.load(sys.stdin).get("prompt", "").strip().lower()
-m = re.match(r"/?-?(npqo|nec-plus-quam-oportet)\b(\s+(lite|full|ultra|off)\b)?", p)
+m = re.match(r"/?-?(npqo|nec-plus-quam-oportet)\b(\s+(lite|levis|full|ultra|off)\b)?", p)
 if m:
-    print(m.group(3) or "full")
+    print({"levis": "lite"}.get(m.group(3), m.group(3) or "full"))
 elif re.match(r"(stop nec plus|normal mode)\b", p):
     print("off")')
-    [ -n "$new" ] && echo "$new" > "$FLAG"
+    [ -z "$new" ] || echo "$new" > "$FLAG"
     ;;
   *)
     # Una sessione nuova riparte da full; /clear, compattazione e resume tengono il livello.

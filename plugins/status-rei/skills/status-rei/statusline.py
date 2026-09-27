@@ -25,6 +25,9 @@ EFFORT = "\033[38;5;179m"     # amber: how hard it is thinking
 WARN = "\033[38;5;174m"
 OFF = "\033[0m"
 
+# nec plus badge by level: the tool cuts harder as the level rises. "off" gets none.
+NEC_PLUS_BADGES = {"lite": "🪶  nec plus levis", "full": "✂️  nec plus", "ultra": "🪓  nec plus ultra"}
+
 
 def branch(cwd):
     """The current branch and whether anything is uncommitted, or None."""
@@ -92,14 +95,11 @@ def main():
     # Modes switched on by SessionStart hooks, each leaving a flag file.
     try:
         with open(os.path.join(HOME, ".nec-plus-active")) as handle:
-            mode = handle.readline().strip()
-        if mode != "off":
-            label = "nec plus" if mode in ("", "full") else f"nec plus:{mode}"
-            parts.append(f"\033[38;5;108m{label}{OFF}")
+            badge = NEC_PLUS_BADGES.get(handle.readline().strip() or "full")
+        if badge:
+            parts.append(f"\033[38;5;108m{badge}{OFF}")
     except OSError:
         pass
-    if os.path.exists(os.path.join(HOME, ".fastidio-active")):
-        parts.append(f"{WARN}🔥 fastidio{OFF}")
     if os.path.exists(os.path.join(HOME, ".sine-more-active")):
         parts.append(f"{WARN}⚡ sine mora{OFF}")
 
