@@ -52,55 +52,88 @@ Non installarli insieme a `omnia`, o ogni skill compare due volte.
 
 ## Skill
 
-- **limam-adhibere** (`-LA` · `-CLA` · `-AD`): pensiero critico e laterale su un'idea o su qualunque cosa, senza codice né piani.
-- **inspectio-decoris** (`-ID`): analisi UX ed estetica di un'app web esistente, con prove dal browser e dal codice.
-- **sequere-pulchritudinem** (`-SP`): applica un restyle già approvato, fase per fase, e lo verifica nel browser.
-- **nec-plus-quam-oportet** (`-NPQO`, sempre attiva): la soluzione più semplice che funziona, basata su ponytail (MIT).
-- **vitium-ostendere** (`-VO`): corregge un bug partendo da un test che fallisce.
-- **sine-more-interposita** (`-SMI`, sempre attiva): finire davvero, agire invece di chiedere, risposte corte in italiano facile.
-- **festina-lente** (`-FL`): esegue un piano lungo senza di te; le decisioni costose si fermano in un file di debiti.
-- **alea-iacta-est** (`-AIE`): esegue un piano lungo senza di te; le decisioni costose le prende Claude e le registra.
-- **status-rei** (`-STR`): statusline con modello, effort, branch, contesto usato e modalità attive.
-- **summa-rerum** (`-SR`): l'help del marketplace.
+Scrivi l'incantesimo latino o la sigla, seguiti dalla richiesta:
+
+```
+-LA aggiungere API che ritorna password degli utenti in chiaro
+```
+
+```
+Limam adhibere '''aggiungere API che ritorna password degli utenti in chiaro'''
+```
+
+Le virgolette triple servono per i testi lunghi o su più righe. Maiuscole e slash non contano:
+`-la`, `/limam-adhibere` e `Limam adhibere` fanno la stessa cosa.
+
+### Analizzare e prendere decisioni (limam-adhibere)
+
+- *Limam adhibere* (`-LA`): analisi completa di un'idea in tre blocchi: capire, valutare, decidere.
+- *Celeri lima adhibita* (`-CLA`): passata veloce: 5 pregi, 5 difetti, 5 miglioramenti.
+- *Advocatus diaboli* (`-AD`): solo contro, per smontare un'idea che ti sembra già buona.
+
+### Design UI e UX (inspectio-decoris, sequere-pulchritudinem)
+
+- *Inspectio decoris* (`-ID`): analisi UX ed estetica di un'app web esistente, con prove dal browser e dal codice. Non tocca il codice.
+- *Sequere pulchritudinem* (`-SP`): applica un restyle già approvato, fase per fase, e lo verifica nel browser.
+
+### Sviluppo (nec-plus-quam-oportet, vitium-ostendere)
+
+- *Nec plus quam oportet* (`-NPQO`), sempre attiva: per la scrittura di codice. La soluzione più semplice che funziona, basata su ponytail (MIT).
+- *Vitium ostendere* (`-VO`): corregge un bug partendo da un test che fallisce.
+
+### Piani lunghi senza di te (festina-lente, alea-iacta-est)
+
+- *Festina lente* (`-FL`): esegue il piano; le decisioni costose si fermano in un file di debiti.
+- *Alea iacta est* (`-AIE`): esegue il piano; le decisioni costose le prende Claude e le registra.
+
+### Come lavora Claude (sine-more-interposita)
+
+- *Sine more interposita* (`-SMI`), sempre attiva: finire davvero, agire invece di chiedere, risposte corte in italiano facile.
+
+### Aiuto e statusline (summa-rerum, status-rei)
+
+- *Summa rerum* (`-SR`): l'help del marketplace.
+- *Status rei* (`-STR`): statusline con modello, effort, branch, contesto usato e modalità attive.
 
 ## Casi d'uso
 
 ### limam-adhibere
 
-- Hai un'idea e vuoi sapere se sta in piedi prima di investirci tempo: `-LA` seguito dall'idea. Tre blocchi (capire, valutare, decidere), uno per turno; scrivi `prosegui` per passare al successivo.
-- Vuoi una passata veloce su un testo, un prompt, un progetto o una decisione: `-CLA` seguito dal testo. 5 pregi, 5 difetti, 5 miglioramenti, di cui almeno due nati dal pensiero laterale.
-- Ti sembra già una buona idea e vuoi che qualcuno provi a smontarla: `-AD`. Solo contro: assunzioni nascoste, pre-mortem ("è passato un anno ed è fallito: perché?"), l'obiezione più forte. Poi puoi rispondere, e ti dice se la tua difesa regge.
+- Hai un'idea e vuoi sapere se sta in piedi prima di investirci tempo: *Limam adhibere* (`-LA`) seguito dall'idea. Tre blocchi (capire, valutare, decidere), uno per turno; scrivi `prosegui` per passare al successivo.
+- Vuoi una passata veloce su un testo, un prompt, un progetto o una decisione: *Celeri lima adhibita* (`-CLA`) seguito dal testo. 5 pregi, 5 difetti, 5 miglioramenti, di cui almeno due nati dal pensiero laterale.
+- Ti sembra già una buona idea e vuoi che qualcuno provi a smontarla: *Advocatus diaboli* (`-AD`). Solo contro: assunzioni nascoste, pre-mortem ("è passato un anno ed è fallito: perché?"), l'obiezione più forte. Poi puoi rispondere, e ti dice se la tua difesa regge.
 
 ### inspectio-decoris e sequere-pulchritudinem
 
-- L'app funziona ma sembra datata, o non sai perché una pagina non convince: `-ID` seguito da URL o cartella. Livelli: `-ID rapida`, `-ID` (standard), `-ID completa`. Non tocca il codice; il piano di interventi finisce in `docs/ux/piano-restyle.md`.
-- Hai approvato il piano e vuoi applicarlo: `-SP applica la fase 1`. Ogni intervento viene verificato nel browser con le stesse misure dell'analisi.
+- L'app funziona ma sembra datata, o non sai perché una pagina non convince: *Inspectio decoris* (`-ID`) seguito da URL o cartella. Livelli: `-ID rapida`, `-ID` (standard), `-ID completa`. Non tocca il codice; il piano di interventi finisce in `docs/ux/piano-restyle.md`.
+- Hai approvato il piano e vuoi applicarlo: *Sequere pulchritudinem* (`-SP`), per esempio `-SP applica la fase 1`. Ogni intervento viene verificato nel browser con le stesse misure dell'analisi.
 
 ### nec-plus-quam-oportet e vitium-ostendere
 
-- Sempre attiva: quando chiedi del codice, Claude riusa quello che c'è già e scrive il minimo che funziona. `-NPQO levis` per allentare, `-NPQO ultra` per stringere, `-NPQO off` per spegnerla.
-- C'è un bug e vuoi la certezza che non torni: `-VO` seguito dalla descrizione. Prima un test che lo riproduce e fallisce, poi la correzione minima, poi lo stesso test verde.
+- Sempre attiva: quando chiedi del codice, Claude riusa quello che c'è già e scrive il minimo che funziona. *Nec plus quam oportet* (`-NPQO`): `-NPQO levis` per allentare, `-NPQO ultra` per stringere, `-NPQO off` per spegnerla.
+- C'è un bug e vuoi la certezza che non torni: *Vitium ostendere* (`-VO`) seguito dalla descrizione. Prima un test che lo riproduce e fallisce, poi la correzione minima, poi lo stesso test verde.
 
 ### sine-more-interposita
 
-- Sempre attiva: risposte corte, lavoro finito invece di mezzo finito, domande solo quando servono davvero. Ogni risposta inizia con una riga ⚡: se sparisce (succede dopo una compattazione del contesto), riscrivi `-SMI`.
+- Sempre attiva: risposte corte, lavoro finito invece di mezzo finito, domande solo quando servono davvero. Ogni risposta inizia con una riga ⚡: se sparisce (succede dopo una compattazione del contesto), riscrivi *Sine more interposita* (`-SMI`).
 
 ### festina-lente e alea-iacta-est
 
-- Hai un piano lungo e devi allontanarti: `-FL` seguito dal piano. Le attività con una decisione che costerebbe refactoring si fermano, Claude passa alle altre, e al ritorno trovi i dubbi in `DEBITI.md` (o in un doc claude.ai).
-- Stesso caso, ma preferisci che decida Claude: `-AIE` seguito dal piano. Scrive almeno tre opzioni, sceglie, isola la scelta in un solo punto e la registra in `DECISIONI.md` (o in un doc claude.ai).
+- Hai un piano lungo e devi allontanarti: *Festina lente* (`-FL`) seguito dal piano. Le attività con una decisione che costerebbe refactoring si fermano, Claude passa alle altre, e al ritorno trovi i dubbi in `DEBITI.md` (o in un doc claude.ai).
+- Stesso caso, ma preferisci che decida Claude: *Alea iacta est* (`-AIE`) seguito dal piano. Scrive almeno tre opzioni, sceglie, isola la scelta in un solo punto e la registra in `DECISIONI.md` (o in un doc claude.ai).
 
 ### status-rei
 
-- Vuoi vedere in basso modello, contesto usato e modalità attive: `-STR`. `-STR off` per toglierla.
+- Vuoi vedere in basso modello, contesto usato e modalità attive: *Status rei* (`-STR`). `-STR off` per toglierla.
 
 ### summa-rerum
 
-- Non ricordi una sigla: `-SR` stampa la tabella di tutte le skill.
+- Non ricordi un incantesimo: *Summa rerum* (`-SR`) stampa la tabella di tutte le skill.
 
 ## Aggiungere un plugin
 
 1. Crea `plugins/<nome>/.claude-plugin/plugin.json` e `plugins/<nome>/skills/<nome>/SKILL.md`.
 2. Aggiungi la voce in `.claude-plugin/marketplace.json`, e aggiungi le sue skill (e gli hook, se ne ha) alla voce `omnia` dello stesso file.
 3. Quando modifichi una skill, incrementa `version` in `plugin.json`, nella sua voce di `marketplace.json` e nella voce `omnia`.
-4. Aggiorna `plugins/summa-rerum/skills/summa-rerum/help.md`, l'help che `-SR` stampa così com'è.
+4. Aggiorna `plugins/summa-rerum/skills/summa-rerum/help.md`, l'help che *Summa rerum* (`-SR`) stampa così com'è.
+5. Quando una skill o un testo suggerisce un comando, scrivi l'incantesimo latino con la sigla: *Sequere pulchritudinem* (`-SP`), mai `-SP` da solo. In fondo è una magia.

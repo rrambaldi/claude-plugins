@@ -9,12 +9,12 @@ Due skill che lavorano in coppia su un'applicazione web esistente.
 
 ## Flusso
 
-1. `-ID` sull'app. La skill si ferma dopo la ricognizione del codice per farti confermare
+1. *Inspectio decoris* (`-ID`) sull'app. La skill si ferma dopo la ricognizione del codice per farti confermare
    persona e flussi, poi percorre l'app e consegna due file:
    - `docs/ux/analisi-AAAA-MM-GG.md`, il report;
    - `docs/ux/piano-restyle.md`, il contratto per il restyle.
 2. Scegli la direzione (conservativa o trasformativa) e approva una o più fasi nel piano.
-3. `-SP`: applica la fase, la verifica nel browser, aggiorna lo stato degli interventi nel piano
+3. *Sequere pulchritudinem* (`-SP`): applica la fase, la verifica nel browser, aggiorna lo stato degli interventi nel piano
    e si ferma prima della fase successiva.
 
 ## Requisiti

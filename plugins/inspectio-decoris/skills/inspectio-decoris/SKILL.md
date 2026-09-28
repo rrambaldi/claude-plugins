@@ -187,7 +187,7 @@ Modelli di entrambi in `references/modello-report.md`.
 
 In chat scrivi solo: verdetto, dimensione più debole con la sua prova, i 3 interventi a maggior
 impatto, cosa non è stato possibile verificare, e dove sono i file. Chiudi chiedendo quale
-direzione adottare e se approvare il piano, fase per fase, per passarlo a `sequere-pulchritudinem`.
+direzione adottare e se approvare il piano, fase per fase, per passarlo a *Sequere pulchritudinem* (`-SP`).
 
 ## Severità
 

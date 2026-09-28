@@ -116,4 +116,4 @@ Sono esempi, inventane di nuove.
 
 Questa riga è anche l'allarme: dopo una compattazione del contesto la modalità
 sparisce senza avvisare. Se in cima non c'è più il fulmine, riscrivi
-/sine-more-interposita.
+*Sine more interposita* (`-SMI`).

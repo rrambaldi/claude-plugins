@@ -16,7 +16,7 @@ scivolare verso un'estetica generica e non dichiarare "fatto" senza averlo visto
 1. **Il piano.** Cerca `docs/ux/piano-restyle.md` (o il percorso indicato dall'utente). È il
    contratto: interventi con ID, criteri di accettazione, elenco "Da non toccare", vincoli, token
    proposti, fasi.
-   - Se non c'è, proponi di eseguire prima `inspectio-decoris`. Per una richiesta piccola e precisa
+   - Se non c'è, proponi di eseguire prima *Inspectio decoris* (`-ID`). Per una richiesta piccola e precisa
      ("correggi il contrasto dei link") puoi procedere senza, ma scrivi prima una mini-scheda
      (problema, correzione, criterio di accettazione, cosa non tocchi) e falla approvare.
 2. **L'approvazione.** Esegui solo le fasi approvate esplicitamente dall'utente. Se il piano dice
@@ -94,8 +94,8 @@ raggiungibili, applica gli stessi controlli a mano e dillo nel rapporto.
 
 - Proponi di copiare in `CLAUDE.md` o `AGENTS.md` le "Regole anti-regressione" del piano, così
   il lavoro futuro rispetta il nuovo sistema. Scrivi solo con il consenso.
-- Proponi una nuova `inspectio-decoris` di livello rapido sui flussi principali, per confermare il
-  risultato con occhi nuovi.
+- Proponi una nuova *Inspectio decoris* rapida (`-ID rapida`) sui flussi principali, per confermare
+  il risultato con occhi nuovi.
 
 ## Formato
 

@@ -1,6 +1,6 @@
 {
   "name": "inspectio-decoris",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Analisi UX ed estetica di app web esistenti con prove dal browser e dal codice (Inspectio decoris / -ID) e restyle applicato e verificato fase per fase (Sequere pulchritudinem / -SP).",
   "author": {
     "name": "rrambaldi"
