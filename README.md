@@ -17,7 +17,10 @@ Cosa fa:
 - toglie ponytail e modalita-fastidio: plugin, skill, comandi e hook in `settings.json` (con copia
   `.bak`), a livello utente, progetto e locale;
 - aggiunge il marketplace e installa `omnia` a livello utente, con tutte le skill e i loro hook;
-- alla fine elenca le tracce rimaste da togliere a mano, se ce ne sono.
+- alla fine elenca i file rimasti di ponytail o fastidio e chiede se toglierli; quelli che li
+  citano soltanto, come una statusline, li segnala e basta.
+
+Per toglierli senza domande: `curl -fsSL …/install.sh | bash -s -- -y`.
 
 Si può rilanciare: la volta dopo aggiorna. I livelli progetto e locale valgono per la cartella da
 cui lo lanci. Poi riavvia Claude Code.
