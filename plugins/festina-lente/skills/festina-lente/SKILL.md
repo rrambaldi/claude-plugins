@@ -50,11 +50,17 @@ niente: decidi e vai avanti.
 ## Il file dei debiti
 
 Un doc claude.ai se hai lo strumento Artifact, altrimenti `DEBITI.md` nella
-cartella del progetto. Titolo: "Debiti — <piano>". Una riga per dubbio, i più
-bloccanti in cima:
+cartella del progetto. Titolo: "Debiti — <piano>". Un dubbio sotto l'altro,
+mai in tabella: le frasi strette nelle celle non si leggono. In cima i più
+bloccanti. Ogni dubbio è un titolo con quattro punti:
 
-| Attività | Domanda per l'utente | Opzioni che vedo | Perché non ho deciso | Ferme a cascata |
-|---|---|---|---|---|
+```markdown
+### <l'attività ferma>
 
-"Opzioni che vedo": quelle vere, con quella che sceglieresti tu, così
-l'utente risponde in fretta.
+- **Domanda per l'utente:** la domanda, fatta perché si risponda in fretta.
+- **Opzioni che vedo:**
+    - un'opzione per riga, solo quelle vere;
+    - per prima quella che sceglieresti tu, segnata "(la mia)".
+- **Perché non ho deciso:** cosa costerebbe sbagliare.
+- **Ferme a cascata:** le attività che aspettano la risposta.
+```

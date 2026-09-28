@@ -57,18 +57,36 @@ Un doc claude.ai se hai lo strumento Artifact, altrimenti `DECISIONI.md`
 nella cartella del progetto. Titolo: "Decisioni — <piano>". Lo crei sempre:
 senza decisioni, lo dice in una riga.
 
-Una riga per decisione, in cima quelle con più attività costruite sopra,
-perché sono quelle che costano di più se sbagliate:
+Una decisione sotto l'altra, mai in tabella: le frasi strette nelle celle
+non si leggono. In cima quelle con più attività costruite sopra, perché sono
+quelle che costano di più se sbagliate. Ogni decisione è un titolo numerato
+con sei punti:
 
-| Decisione | Opzioni considerate | Scelta e perché | Dove si cambia | Costruito sopra | Da investigare |
-|---|---|---|---|---|---|
+```markdown
+### 1. <la decisione, in poche parole>
 
-- "Dove si cambia": il punto in cui hai isolato la scelta (file, funzione,
-  chiave).
-- "Costruito sopra": le attività del piano che dipendono da questa scelta.
-- "Da investigare": cosa controllare per sapere se la scelta era giusta.
+- **Scelta:** l'opzione presa.
+- **Perché:** una o due frasi.
+- **Scartate:**
+    - un'opzione per riga;
+    - anche "non farlo" o "rimandare", se erano sensate.
+- **Dove si cambia:** il punto in cui hai isolato la scelta (file, funzione, chiave).
+- **Ci poggia sopra:** le attività del piano che dipendono da questa scelta.
+- **Da controllare:** cosa guardare per sapere se la scelta era giusta.
+```
 
-Sotto, se ci sono, i debiti dei tre casi, con la tabella di festina-lente:
+Sotto, se ci sono, i debiti dei tre casi, come in festina-lente: un'attività
+ferma sotto l'altra.
 
-| Attività | Domanda per l'utente | Opzioni che vedo | Perché non ho deciso | Ferme a cascata |
-|---|---|---|---|---|
+```markdown
+### <l'attività ferma>
+
+- **Domanda per l'utente:** la domanda, fatta perché si risponda in fretta.
+- **Opzioni che vedo:**
+    - un'opzione per riga, per prima quella che sceglieresti tu, segnata "(la mia)".
+- **Perché non ho deciso:** quale dei tre casi.
+- **Ferme a cascata:** le attività che aspettano la risposta.
+```
+
+In fondo lo stato del piano: un titolo per attività, con i punti **Fatto**
+(cosa c'è adesso) e **Provato** (come l'hai verificato).
