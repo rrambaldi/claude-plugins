@@ -1,17 +1,17 @@
 ---
 name: limam-adhibere
 description: >-
-  Analisi critica di un'idea (di business, di prodotto, di progetto aziendale o personale) e sua
-  trasformazione in un piano d'azione, con ipotesi da verificare, test, rischi e criteri per
-  proseguire, modificare, sospendere o abbandonare. Attivala SEMPRE quando l'utente scrive
-  "Limam adhibere" o la sigla "-LA" (analisi completa), oppure "Celeri lima adhibita" o la sigla
-  "-CLA" (versione rapida): con o senza slash, in qualunque combinazione di maiuscole, da soli o
-  seguiti o preceduti dal testo dell'idea. Attivala anche quando l'utente
-  chiede esplicitamente di analizzare o valutare criticamente un'idea, di trovarne pro e contro,
-  di metterla alla prova o di trasformarla in un piano d'azione, per esempio "analizza questa
-  idea", "questa idea sta in piedi?", "valuta criticamente questo progetto", "dall'idea al piano".
-  Non usarla per domande tecniche puntuali né per progetti già in esecuzione dove serve solo un
-  piano operativo.
+  Pensiero critico e laterale su un'idea, un progetto o qualunque cosa: pregi, difetti,
+  alternative, ipotesi, rischi e criteri per proseguire o abbandonare. Solo analisi: niente
+  codice, file o piani. Attivala SEMPRE quando l'utente scrive "Limam adhibere" o "-LA" (analisi
+  completa), "Celeri lima adhibita" o "-CLA" (rapida: 5 pregi, 5 difetti, 5 miglioramenti, anche
+  laterali), "Advocatus diaboli" o "-AD" (solo contro: il caso più forte per non farlo): con o
+  senza slash, in qualunque combinazione di maiuscole, da soli o seguiti o preceduti dal testo.
+  Attivala anche quando l'utente chiede esplicitamente di analizzare o valutare criticamente
+  un'idea, di trovarne pro e contro, di metterla alla prova o di fare l'avvocato del diavolo, per
+  esempio "analizza questa idea", "questa idea sta in piedi?", "valuta criticamente questo
+  progetto", "smontala". Non usarla per domande tecniche puntuali, né per scrivere piani d'azione
+  o codice.
 ---
 
 # Limam adhibere
@@ -25,10 +25,18 @@ decidere.
 | Comando | Sigla | Modalità |
 |---|---|---|
 | Limam adhibere | -LA | Analisi completa in tre blocchi |
-| Celeri lima adhibita | -CLA | Versione rapida in un solo turno |
+| Celeri lima adhibita | -CLA | 5 pregi, 5 difetti, 5 miglioramenti, in un turno |
+| Advocatus diaboli | -AD | Solo contro: assunzioni nascoste, pre-mortem, obiezione più forte |
 
 Le sigle valgono quando compaiono come parola a sé (a inizio o fine messaggio, o da sole), non
 quando fanno parte di un'altra parola.
+
+## Solo pensiero critico
+
+Con -LA, -CLA e -AD si pensa e basta. Non scrivere codice, non creare né modificare file, non scrivere
+piani: niente fasi, calendari o liste di cose da fare. Se l'idea riguarda un software, analizzala
+senza implementarne nessuna parte. Se l'utente vuole passare all'azione, lo chiederà dopo, fuori
+da questa skill.
 
 ## Flusso
 
@@ -37,14 +45,15 @@ quando fanno parte di un'altra parola.
    Se non c'è nessuna idea, chiedila, proponi il modello di input qui sotto e fermati.
 2. **Passa dal cancello iniziale** (sezione dedicata).
 3. **Svolgi l'analisi in tre blocchi, un turno per blocco**, fermandoti alla fine di ciascuno.
-   Il motivo è pratico: in una sola risposta le ultime sezioni (piano, rischi, decisione) vengono
+   Il motivo è pratico: in una sola risposta le ultime sezioni (rischi, criteri, decisione) vengono
    compresse, e sono proprio quelle che servono di più. La pausa tra i blocchi permette inoltre
    all'utente di correggere le assunzioni prima che si propaghino.
 
 Varianti:
 - **Rapida**: se l'utente scrive "Celeri lima adhibita" o "-CLA", o chiede comunque una versione
-  breve, fai un solo turno condensato (sezione "Modalità rapida"). Alla fine proponi in una riga
-  l'analisi completa (-LA) se il verdetto non è netto.
+  breve, fai un solo turno: 5 pregi, 5 difetti, 5 miglioramenti (sezione "Modalità rapida").
+- **Avvocato del diavolo**: se l'utente scrive "Advocatus diaboli" o "-AD", o chiede di smontare
+  l'idea, fai un solo turno di soli contro (sezione "Advocatus diaboli").
 - **Tutto in un turno**: se l'utente lo chiede esplicitamente, esegui i tre blocchi di fila in
   forma compatta.
 
@@ -66,7 +75,7 @@ Già fatto: [ricerche, prototipi, conversazioni con potenziali clienti...]
 1. **Critica indipendente.** Non dare per scontato che l'idea sia valida, originale o vendibile,
    e non cercare di compiacere. Una valutazione indulgente fa perdere mesi, una critica fondata
    costa qualche minuto di fastidio. Critico non vuol dire distruttivo: per ogni problema cerca
-   cosa lo risolverebbe.
+   cosa lo risolverebbe (tranne in -AD, dove le soluzioni spettano all'utente).
 
 2. **Stato epistemico esplicito.** Per le affermazioni da cui dipende una conclusione usa
    etichette inline:
@@ -92,15 +101,16 @@ Già fatto: [ricerche, prototipi, conversazioni con potenziali clienti...]
 
 5. **Nessuna quota.** Non produrre "almeno N" punti di forza, rischi o varianti: elenca quelli
    che reggono. Tre punti veri valgono più di dieci di riempitivo, che annacqua quelli importanti.
+   L'unica eccezione è la modalità rapida, dove il 5 è voluto (sezione dedicata).
 
 6. **Proporzionalità.** Adatta la profondità alla maturità dell'idea. Niente proiezioni
    finanziarie dettagliate su un'idea in bozza, niente architettura tecnica prima di sapere se il
    problema esiste. Poter costruire una cosa non significa poterla vendere, farla adottare o
    mantenerla nel tempo.
 
-7. **Orientamento alla decisione.** Ogni sezione deve portare a una decisione o a un'azione.
-   Niente "fare marketing" o "studiare il mercato" senza dire cosa, come e con quale risultato
-   atteso. Se una sezione non è pertinente, dillo in una riga e passa oltre.
+7. **Orientamento alla decisione.** Ogni sezione deve servire a decidere. Niente osservazioni
+   generiche come "serve marketing": di' cosa manca e perché conta. Se una sezione non è
+   pertinente, dillo in una riga e passa oltre.
 
 8. **Niente ripetizioni.** Ogni elemento compare una volta, nel blocco dove serve. Nei blocchi
    successivi richiamalo senza riscriverlo.
@@ -170,49 +180,71 @@ esplicitamente.
    condizioni l'idea batte gli impieghi alternativi. Quando il tempo è la risorsa scarsa, spesso è
    il criterio decisivo.
 
-Chiudi con: *"Scrivi **prosegui** per il blocco C (validazione, piano e decisione)."*
+Chiudi con: *"Scrivi **prosegui** per il blocco C (ipotesi, rischi e decisione)."*
 
-## Blocco C — Decidere e agire
+## Blocco C — Decidere
 
 1. **Ipotesi più rischiose**, al massimo 5, ordinate per peso sulla decisione di proseguire:
 
-   | Ipotesi | Test concreto | Con chi | Metrica | Soglia di successo | Tempo e costo |
+   | Ipotesi | Perché è rischiosa | Cosa la smentirebbe |
 
    Distingui interesse dichiarato, comportamento osservato e impegno economico (preordine,
    lettera d'intenti, pilota pagato). Solo gli ultimi due sono prova di domanda.
-2. **Primo esperimento.** Il test più economico e veloce che potrebbe smentire l'ipotesi
-   centrale, e il risultato da ottenere prima di investire ancora.
-3. **Piano per fasi**, adattato al progetto (come riferimento: validazione del problema,
-   fattibilità, prototipo o MVP, pilota, lancio, crescita). Per ogni fase: obiettivo, attività e
-   dipendenze, deliverable, risorse, durata e costo stimati (o i dati necessari per stimarli),
-   criterio di passaggio alla fase successiva. Dettaglia solo le fasi vicine e riassumi in una
-   riga quelle lontane, che dipendono dagli esiti dei test. Metti prima le attività che riducono
-   di più l'incertezza.
-4. **Registro rischi:**
+2. **Rischi:**
 
-   | Rischio | Probabilità (bassa/media/alta) | Impatto | Segnali precoci | Mitigazione | Piano B |
+   | Rischio | Probabilità (bassa/media/alta) | Impatto | Segnali precoci | Mitigazione |
 
    Non ripetere i contro del blocco B: qui vanno i rischi di esecuzione e quelli che emergono nel
    tempo.
-5. **Scenari** favorevole, intermedio e sfavorevole: condizioni che li determinano, conseguenze,
+3. **Scenari** favorevole, intermedio e sfavorevole: condizioni che li determinano, conseguenze,
    decisioni. Senza probabilità numeriche.
-6. **Criteri di decisione**, formulati in modo verificabile: proseguire se…, modificare se…,
+4. **Criteri di decisione**, formulati in modo verificabile: proseguire se…, modificare se…,
    sospendere se…, abbandonare se….
-7. **Sintesi decisionale:**
+5. **Sintesi decisionale:**
    - verdetto (procedere / validare prima / ripensare / abbandonare) con motivazione in tre
      righe, distinguendo le conclusioni solide da quelle che dipendono da ipotesi;
-   - le tre azioni dei prossimi 7 giorni e la singola azione da fare domani mattina;
-   - piano indicativo a 30/60/90 giorni, se ha senso;
    - cosa sarebbe prematuro sviluppare o finanziare ora;
-   - quali informazioni raccogliere per rendere l'analisi più precisa.
-
-Alla fine proponi, in una riga, di raccogliere i tre blocchi in un unico documento.
+   - quali informazioni mancano per rendere l'analisi più precisa.
 
 ## Modalità rapida (Celeri lima adhibita, -CLA)
 
-Un solo turno, stessi principi: idea in una frase; i pro e contro che contano, marcati come
-strutturali o risolvibili; l'eventuale fattore fatale; l'ipotesi centrale e il test più economico
-per smentirla; verdetto; azione di domani mattina. Nessuna tabella che non sia indispensabile.
+Serve a stimolare il pensiero critico e laterale su qualunque cosa (un'idea, un progetto, un
+testo, un prompt, una decisione), non a decidere. Un solo turno, tre elenchi numerati e niente
+altro:
+
+1. **5 pregi** (P1-P5). Cosa regge davvero, e perché.
+2. **5 difetti** (D1-D5). Cosa non regge o è ancora da dimostrare; segna se è strutturale o
+   risolvibile.
+3. **5 miglioramenti** (M1-M5). Ciascuno dice quale difetto risolve ("→ D2"), oppure propone
+   un'altra strada per lo stesso problema. Almeno due nascono dal pensiero laterale, e dicono da
+   quale mossa: *ribalta* un'assunzione (e se fosse il contrario?), *togli* un elemento che
+   sembra indispensabile, *esagera* un elemento fino all'estremo, *prendi in prestito* la
+   soluzione da un altro campo.
+
+Una riga per punto, due al massimo. Il 5 è voluto: spinge oltre i primi punti ovvi. Se però il
+quinto fosse riempitivo, scrivi che non ne trovi un altro che regga invece di inventarlo.
+
+Niente cancello iniziale, blocchi, tabelle o etichette: se manca un'informazione, dichiara in una
+riga in cima l'assunzione fatta. Valgono i principi 1, 3 e 4.
+
+## Advocatus diaboli (-AD)
+
+Nei processi di canonizzazione l'avvocato del diavolo doveva contestare la causa. Qui costruisce
+il caso più forte per *non* farlo, su qualunque cosa, come -CLA. Un solo turno, solo contro:
+niente pregi, niente mitigazioni, niente miglioramenti. La difesa spetta all'utente.
+
+1. **Assunzioni nascoste**, al massimo 5. Quelle che chi propone fa senza accorgersene e da cui
+   tutto dipende; per ciascuna, perché potrebbe essere falsa.
+2. **Pre-mortem.** "È passato un anno ed è fallito": le cause più plausibili, al massimo 5,
+   dalla più probabile. Senza percentuali.
+3. **L'obiezione più forte**, quella a cui è più difficile rispondere, in due righe.
+
+Fortemente critico non vuol dire inventato: ogni obiezione poggia su un fatto, un meccanismo o un
+precedente, non sul tono. Niente obiezioni che valgono per qualunque idea ("il mercato è
+competitivo"). Una riga per punto, due al massimo; niente cancello iniziale, blocchi o tabelle.
+
+Se l'utente risponde a un'obiezione, di' se la risposta regge, senza ammorbidire: l'avvocato
+cede solo davanti a un argomento, non all'insistenza.
 
 ## Formato
 
