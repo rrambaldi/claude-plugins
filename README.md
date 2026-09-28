@@ -47,6 +47,7 @@ skill compare due volte.
 /plugin install sine-more-interposita@armamentarium
 /plugin install nec-plus-quam-oportet@armamentarium
 /plugin install festina-lente@armamentarium
+/plugin install nomen-mutare@armamentarium
 /plugin install status-rei@armamentarium
 /plugin install summa-rerum@armamentarium
 ```
@@ -95,6 +96,10 @@ Le virgolette triple servono per i testi lunghi o su più righe. Maiuscole e sla
 
 - *Sine more interposita* (`-SMI`), sempre attiva: finire davvero, agire invece di chiedere, risposte corte in italiano facile.
 
+### Titolo della sessione (nomen-mutare)
+
+- *Nomen mutare*, sempre attivo, senza sigla: ogni 10 prompt dà alla sessione un titolo nuovo, come `/rename`.
+
 ### Aiuto e statusline (summa-rerum, status-rei)
 
 - *Summa rerum* (`-SR`): l'help del marketplace.
@@ -121,6 +126,10 @@ Le virgolette triple servono per i testi lunghi o su più righe. Maiuscole e sla
 ### sine-more-interposita
 
 - Sempre attiva: risposte corte, lavoro finito invece di mezzo finito, domande solo quando servono davvero. Ogni risposta inizia con una riga ⚡: se sparisce (succede dopo una compattazione del contesto), riscrivi *Sine more interposita* (`-SMI`).
+
+### nomen-mutare
+
+- La sessione cambia argomento e il titolo di Claude Code resta quello del primo prompt: ogni 10 prompt Haiku legge gli ultimi prompt e scrive un titolo nuovo, che arriva al prompt dopo, come un `/rename`. Per cambiare ogni quanti prompt, nei settings: `"env": {"NOMEN_MUTARE_OGNI": "5"}`; `"0"` lo spegne. Un `/rename` fatto a mano dura fino al giro successivo.
 
 ### festina-lente e alea-iacta-est
 

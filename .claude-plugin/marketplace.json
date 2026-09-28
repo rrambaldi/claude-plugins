@@ -10,7 +10,7 @@
     {
       "name": "omnia",
       "description": "Tutto l'armamentarium in un colpo solo: tutte le skill di tutti i plugin, con i loro hook.",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "source": "./",
       "strict": false,
       "skills": [
@@ -56,6 +56,10 @@
               {
                 "type": "command",
                 "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/plugins/nec-plus-quam-oportet\" bash \"${CLAUDE_PLUGIN_ROOT}/plugins/nec-plus-quam-oportet/hooks/load-rules.sh\" prompt"
+              },
+              {
+                "type": "command",
+                "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/plugins/nomen-mutare/hooks/nomen-mutare.py\""
               }
             ]
           }
@@ -110,6 +114,13 @@
       "description": "Eseguire un piano lungo senza di te. Festina lente / -FL: le attività con decisioni che costano refactoring si fermano, si prosegue con le altre, i debiti finiscono in un file da controllare. Alea iacta est / -AIE: Claude decide anche quelle, con tre opzioni, isola la scelta in un punto e la registra in un artefatto.",
       "version": "1.0.0",
       "source": "./plugins/festina-lente",
+      "category": "productivity"
+    },
+    {
+      "name": "nomen-mutare",
+      "description": "Ogni 10 prompt dà alla sessione un titolo nuovo, come /rename, scritto da Haiku sugli ultimi prompt. Ogni quanti prompt: NOMEN_MUTARE_OGNI nei settings (0 lo spegne).",
+      "version": "1.0.0",
+      "source": "./plugins/nomen-mutare",
       "category": "productivity"
     }
   ]

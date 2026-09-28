@@ -1,0 +1,8 @@
+{
+  "name": "nomen-mutare",
+  "version": "1.0.0",
+  "description": "Ogni 10 prompt dà alla sessione un titolo nuovo, come /rename, scritto da Haiku sugli ultimi prompt. Ogni quanti prompt: NOMEN_MUTARE_OGNI nei settings (0 lo spegne).",
+  "author": {
+    "name": "rrambaldi"
+  }
+}
