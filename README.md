@@ -19,6 +19,8 @@ Cosa fa:
 - aggiunge il marketplace e installa `omnia` a livello utente, con tutte le skill e i loro hook;
 - mette le skill di omnia su `on` in `skillOverrides` (settings utente) e toglie le eccezioni che
   le spengono nei settings del progetto;
+- accende `autoUpdate` sul marketplace (settings utente): a ogni avvio Claude Code scarica le
+  versioni nuove, se in `marketplace.json` è cambiata `version`;
 - alla fine elenca i file rimasti di ponytail o fastidio e chiede se toglierli; quelli che li
   citano soltanto, come una statusline, li segnala e basta.
 

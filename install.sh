@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Armamentarium in Claude Code: toglie ponytail e modalita-fastidio (plugin, skill, hook), aggiunge
-# il marketplace, installa omnia (tutte le skill, con i loro hook) a livello utente e ne accende le
-# skill in skillOverrides. Si può
+# il marketplace, installa omnia (tutte le skill, con i loro hook) a livello utente, ne accende le
+# skill in skillOverrides e accende l'aggiornamento automatico del marketplace. Si può
 # rilanciare quante volte vuoi. I livelli progetto e locale valgono per la cartella da cui lo lanci.
 # Prima di cancellare i file rimasti chiede conferma; con -y li cancella senza chiedere.
 #
@@ -130,11 +130,12 @@ fi
 out=$(cl plugin enable "$PLUGIN" --scope user 2>&1) || grep -q "already enabled" <<<"$out" || { echo "$out" >&2; exit 1; }
 # Skill di omnia su "on" nei settings utente. Nei settings di progetto e locali un'eccezione per la
 # stessa skill vincerebbe su quella utente: lì si tolgono quelle che la spengono.
+# Nei settings utente anche autoUpdate: per i marketplace non ufficiali parte spento.
 mapfile -t locali < <(esistenti "$HOME/.claude/settings.local.json" "$PWD/.claude/settings.json" "$PWD/.claude/settings.local.json")
 if command -v python3 >/dev/null; then
-  python3 - "$HOME/.claude/plugins/marketplaces/$MARKETPLACE" "$HOME/.claude/settings.json" "${locali[@]}" <<'PY' || echo "   ⚠ skillOverrides non aggiornati, vado avanti" >&2
+  python3 - "$MARKETPLACE" "$HOME/.claude/plugins/marketplaces/$MARKETPLACE" "$HOME/.claude/settings.json" "${locali[@]}" <<'PY' || echo "   ⚠ skillOverrides e autoUpdate non aggiornati, vado avanti" >&2
 import json, os, re, shutil, sys
-radice, utente, *altri = sys.argv[1:]
+nome, radice, utente, *altri = sys.argv[1:]
 
 def salva(f, dati):
     if not os.path.exists(f + ".bak") or os.path.getmtime(f + ".bak") < float(os.environ["INIZIO"]):
@@ -152,11 +153,23 @@ for cartella in omnia["skills"]:
     chiavi.add("omnia:" + re.search(r"^name:\s*(\S+)", testo, re.M).group(1))
 
 dati = json.load(open(utente))
+cambiati = False
 override = dati.setdefault("skillOverrides", {})
 if any(override.get(k) != "on" for k in chiavi):
     override.update(dict.fromkeys(sorted(chiavi), "on"))
+    cambiati = True
+# La voce la scrive "marketplace add --scope user"; senza, autoUpdate da solo non basta.
+voce = dati.get("extraKnownMarketplaces", {}).get(nome)
+if voce is not None and voce.get("autoUpdate") is not True:
+    voce["autoUpdate"] = True
+    cambiati = True
+if cambiati:
     salva(utente, dati)
 print(f"   skillOverrides: {len(chiavi)} skill di omnia su on in {utente}")
+if voce is None:
+    print(f"   ⚠ {nome} non è in {utente}: accendi l'aggiornamento da /plugin → Marketplaces", file=sys.stderr)
+else:
+    print(f"   autoUpdate: {nome} si aggiorna da solo a ogni avvio di Claude Code")
 
 for f in dict.fromkeys(altri):
     if os.path.realpath(f) == os.path.realpath(utente):
@@ -173,7 +186,7 @@ for f in dict.fromkeys(altri):
         print(f"   tolte {len(spente)} eccezioni che spegnevano omnia da {f}")
 PY
 else
-  echo "   ⚠ python3 non trovato: metti a mano le skill di omnia su \"on\" in skillOverrides" >&2
+  echo "   ⚠ python3 non trovato: metti a mano le skill di omnia su \"on\" in skillOverrides e accendi l'aggiornamento da /plugin → Marketplaces" >&2
 fi
 
 echo "5/5 controllo finale"
