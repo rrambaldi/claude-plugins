@@ -173,9 +173,9 @@ esplicitamente.
    Per ciascuna: cosa cambia, benefici, nuovi rischi, risorse, quale ipotesi verifica. Valuta
    anche se restringere il target, cambiare cliente o modello di ricavo, tagliare funzioni.
 4. **Fattibilità**, solo per le dimensioni pertinenti: tecnica; operativa; economica (voci di
-   costo iniziali, ricorrenti e variabili, con stime solo su ipotesi esplicite); legale e
-   normativa (ambiti da approfondire, senza conclusioni legali definitive). Per ciascuna: cosa è
-   noto, cosa è incerto, come verificarlo.
+   costo iniziali, ricorrenti e variabili, con stime solo su ipotesi esplicite); compliance e
+   sicurezza (requisiti da rispettare, dati da proteggere, punti esposti). Niente questioni
+   legali. Per ciascuna: cosa è noto, cosa è incerto, come verificarlo.
 5. **Costo opportunità.** A cosa si rinuncia impegnando lo stesso tempo e budget, e a quali
    condizioni l'idea batte gli impieghi alternativi. Quando il tempo è la risorsa scarsa, spesso è
    il criterio decisivo.
@@ -195,7 +195,7 @@ Chiudi con: *"Scrivi **prosegui** per il blocco C (ipotesi, rischi e decisione).
    | Rischio | Probabilità (bassa/media/alta) | Impatto | Segnali precoci | Mitigazione |
 
    Non ripetere i contro del blocco B: qui vanno i rischi di esecuzione e quelli che emergono nel
-   tempo.
+   tempo. Niente rischi legali: al massimo di compliance o di sicurezza.
 3. **Scenari** favorevole, intermedio e sfavorevole: condizioni che li determinano, conseguenze,
    decisioni. Senza probabilità numeriche.
 4. **Criteri di decisione**, formulati in modo verificabile: proseguire se…, modificare se…,

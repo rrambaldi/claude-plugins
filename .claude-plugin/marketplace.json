@@ -10,7 +10,7 @@
     {
       "name": "omnia",
       "description": "Tutto l'armamentarium in un colpo solo: tutte le skill di tutti i plugin, con i loro hook.",
-      "version": "1.5.1",
+      "version": "1.5.2",
       "source": "./",
       "strict": false,
       "skills": [
@@ -70,7 +70,7 @@
     {
       "name": "limam-adhibere",
       "description": "Pensiero critico su un'idea, niente codice né piani. Limam adhibere / -LA completa, Celeri lima adhibita / -CLA rapida, Advocatus diaboli / -AD solo contro.",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "source": "./plugins/limam-adhibere",
       "category": "productivity"
     },
