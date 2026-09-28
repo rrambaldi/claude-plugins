@@ -17,6 +17,8 @@ Cosa fa:
 - toglie ponytail e modalita-fastidio: plugin, skill, comandi e hook in `settings.json` (con copia
   `.bak`), a livello utente, progetto e locale;
 - aggiunge il marketplace e installa `omnia` a livello utente, con tutte le skill e i loro hook;
+- mette le skill di omnia su `on` in `skillOverrides` (settings utente) e toglie le eccezioni che
+  le spengono nei settings del progetto;
 - alla fine elenca i file rimasti di ponytail o fastidio e chiede se toglierli; quelli che li
   citano soltanto, come una statusline, li segnala e basta.
 

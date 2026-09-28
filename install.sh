@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Armamentarium in Claude Code: toglie ponytail e modalita-fastidio (plugin, skill, hook), aggiunge
-# il marketplace e installa omnia (tutte le skill, con i loro hook) a livello utente. Si può
+# il marketplace, installa omnia (tutte le skill, con i loro hook) a livello utente e ne accende le
+# skill in skillOverrides. Si può
 # rilanciare quante volte vuoi. I livelli progetto e locale valgono per la cartella da cui lo lanci.
 # Prima di cancellare i file rimasti chiede conferma; con -y li cancella senza chiedere.
 #
@@ -10,6 +11,8 @@ set -euo pipefail
 
 SI=no
 [ "${1:-}" = -y ] && SI=si
+# Ogni settings modificato viene copiato in .bak una volta per giro, prima della prima modifica.
+export INIZIO=$(date +%s)
 
 MARKETPLACE=armamentarium
 REPO=rrambaldi/claude-plugins
@@ -60,7 +63,7 @@ mapfile -t settings < <(esistenti "${SETTINGS[@]}")
 if [ ${#settings[@]} -gt 0 ]; then
   if command -v python3 >/dev/null; then
     python3 - "$DA_TOGLIERE" "${settings[@]}" <<'PY' || echo "   ⚠ hook non puliti, vado avanti" >&2
-import json, re, shutil, sys
+import json, os, re, shutil, sys
 nomi = re.compile(sys.argv[1], re.I)
 for f in dict.fromkeys(sys.argv[2:]):
     try:
@@ -86,7 +89,8 @@ for f in dict.fromkeys(sys.argv[2:]):
     if tolti:
         if not hooks:
             del dati["hooks"]
-        shutil.copy(f, f + ".bak")
+        if not os.path.exists(f + ".bak") or os.path.getmtime(f + ".bak") < float(os.environ["INIZIO"]):
+            shutil.copy(f, f + ".bak")
         with open(f, "w") as out:
             json.dump(dati, out, indent=2, ensure_ascii=False)
             out.write("\n")
@@ -124,6 +128,53 @@ else
   cl plugin install "$PLUGIN" --scope user
 fi
 out=$(cl plugin enable "$PLUGIN" --scope user 2>&1) || grep -q "already enabled" <<<"$out" || { echo "$out" >&2; exit 1; }
+# Skill di omnia su "on" nei settings utente. Nei settings di progetto e locali un'eccezione per la
+# stessa skill vincerebbe su quella utente: lì si tolgono quelle che la spengono.
+mapfile -t locali < <(esistenti "$HOME/.claude/settings.local.json" "$PWD/.claude/settings.json" "$PWD/.claude/settings.local.json")
+if command -v python3 >/dev/null; then
+  python3 - "$HOME/.claude/plugins/marketplaces/$MARKETPLACE" "$HOME/.claude/settings.json" "${locali[@]}" <<'PY' || echo "   ⚠ skillOverrides non aggiornati, vado avanti" >&2
+import json, os, re, shutil, sys
+radice, utente, *altri = sys.argv[1:]
+
+def salva(f, dati):
+    if not os.path.exists(f + ".bak") or os.path.getmtime(f + ".bak") < float(os.environ["INIZIO"]):
+        shutil.copy(f, f + ".bak")
+    with open(f, "w") as out:
+        json.dump(dati, out, indent=2, ensure_ascii=False)
+        out.write("\n")
+
+# L'elenco delle skill di omnia viene dal marketplace, così non va aggiornato qui.
+catalogo = json.load(open(os.path.join(radice, ".claude-plugin", "marketplace.json")))
+omnia = next(p for p in catalogo["plugins"] if p["name"] == "omnia")
+chiavi = set()
+for cartella in omnia["skills"]:
+    testo = open(os.path.join(radice, cartella, "SKILL.md")).read()
+    chiavi.add("omnia:" + re.search(r"^name:\s*(\S+)", testo, re.M).group(1))
+
+dati = json.load(open(utente))
+override = dati.setdefault("skillOverrides", {})
+if any(override.get(k) != "on" for k in chiavi):
+    override.update(dict.fromkeys(sorted(chiavi), "on"))
+    salva(utente, dati)
+print(f"   skillOverrides: {len(chiavi)} skill di omnia su on in {utente}")
+
+for f in dict.fromkeys(altri):
+    if os.path.realpath(f) == os.path.realpath(utente):
+        continue
+    dati = json.load(open(f))
+    override = dati.get("skillOverrides") or {}
+    spente = [k for k, v in override.items() if v != "on" and (k in chiavi or "omnia:" + k in chiavi)]
+    if spente:
+        for k in spente:
+            del override[k]
+        if not override:
+            del dati["skillOverrides"]
+        salva(f, dati)
+        print(f"   tolte {len(spente)} eccezioni che spegnevano omnia da {f}")
+PY
+else
+  echo "   ⚠ python3 non trovato: metti a mano le skill di omnia su \"on\" in skillOverrides" >&2
+fi
 
 echo "5/5 controllo finale"
 mapfile -t cartelle < <(esistenti "${CARTELLE[@]}")
