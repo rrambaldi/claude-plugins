@@ -10,8 +10,17 @@ Da una shell, anche dal terminale di VS Code:
 curl -fsSL https://raw.githubusercontent.com/rrambaldi/claude-plugins/main/install.sh | bash
 ```
 
-Toglie ponytail e modalita-fastidio, aggiunge il marketplace e installa `omnia`, che contiene tutte
-le skill e i loro hook. Si può rilanciare: la volta dopo aggiorna. Poi riavvia Claude Code.
+Dentro Claude Code puoi lanciarlo così com'è mettendo `!` davanti.
+
+Cosa fa:
+
+- toglie ponytail e modalita-fastidio: plugin, skill, comandi e hook in `settings.json` (con copia
+  `.bak`), a livello utente, progetto e locale;
+- aggiunge il marketplace e installa `omnia` a livello utente, con tutte le skill e i loro hook;
+- alla fine elenca le tracce rimaste da togliere a mano, se ce ne sono.
+
+Si può rilanciare: la volta dopo aggiorna. I livelli progetto e locale valgono per la cartella da
+cui lo lanci. Poi riavvia Claude Code.
 
 Da dentro Claude Code, senza script:
 
