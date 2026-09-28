@@ -2,21 +2,32 @@
 
 Armamentarium: plugin personali per Claude.
 
-| Plugin | Cosa fa | Comandi |
-|---|---|---|
-| limam-adhibere | Analisi critica di un'idea: pro e contro, ipotesi e test, rischi, piano d'azione, criteri di decisione | `Limam adhibere` / `-LA` (completa, tre blocchi) · `Celeri lima adhibita` / `-CLA` (rapida) |
-| inspectio-decoris | Analisi UX ed estetica di app web esistenti con prove dal browser e dal codice; restyle applicato e verificato fase per fase | `Inspectio decoris` / `-ID` (analisi: rapida, standard, completa) · `Sequere pulchritudinem` / `-SP` (restyle dal piano approvato) |
-| sine-more-interposita | Modalità di lavoro per tutta la sessione: finire davvero, agire invece di chiedere, andare veloce, risposte corte | `/sine-more-interposita` / `-SMI` |
-| nec-plus-quam-oportet | Modalità di lavoro per tutta la sessione, basata su ponytail (MIT): la soluzione più semplice che funziona, riuso di codice e API esistenti, costanti, niente duplicati, errori mai ingoiati, `DefunctumEst:` sul codice cancellato; bug corretti partendo da un test che fallisce | `/nec-plus-quam-oportet` / `-NPQO` `[levis\|ultra\|off]` · `Vitium ostendere` / `-VO` |
-| festina-lente | Eseguire un piano lungo senza di te: le attività con decisioni che costano refactoring si fermano e finiscono in un file di debiti, oppure Claude le decide, isola la scelta in un punto e la registra | `Festina lente` / `-FL` (ferma e segna i debiti) · `Alea iacta est` / `-AIE` (decide, isola e registra) |
-| status-rei | Statusline su richiesta: modello, effort, cartella, branch, contesto usato e badge delle modalità attive (nec plus, sine mora) | `/status-rei` / `-STR` (attiva) · `-STR off` (disattiva) |
-| summa-rerum | Help del marketplace: elenca plugin e skill, con cosa fanno, come si attivano e quali sono sempre attive | `Summa rerum` / `/summa-rerum` / `-SR` |
+## Installa tutto
 
-## Installazione in Claude Code
+Da una shell, anche dal terminale di VS Code:
+
+```
+curl -fsSL https://raw.githubusercontent.com/rrambaldi/claude-plugins/main/install.sh | bash
+```
+
+Toglie ponytail e modalita-fastidio, aggiunge il marketplace e installa `omnia`, che contiene tutte
+le skill e i loro hook. Si può rilanciare: la volta dopo aggiorna. Poi riavvia Claude Code.
+
+Da dentro Claude Code, senza script:
 
 ```
 /plugin marketplace add rrambaldi/claude-plugins
 /plugin install omnia@armamentarium
+```
+
+Su claude.ai (chat e Claude Code sul web) gli script non girano: skill e plugin si gestiscono da
+Customize → Skills e Customize → Plugins. Se installi il marketplace sia lì sia in locale, ogni
+skill compare due volte.
+
+<details>
+<summary>Un plugin alla volta</summary>
+
+```
 /plugin install limam-adhibere@armamentarium
 /plugin install inspectio-decoris@armamentarium
 /plugin install sine-more-interposita@armamentarium
@@ -26,9 +37,57 @@ Armamentarium: plugin personali per Claude.
 /plugin install summa-rerum@armamentarium
 ```
 
-La prima riga `install` installa tutto. Le altre servono solo se vuoi un plugin alla volta: non installare entrambe le cose, o ogni skill compare due volte.
+Non installarli insieme a `omnia`, o ogni skill compare due volte.
 
-Per aggiornare dopo un push: `/plugin marketplace update armamentarium`.
+</details>
+
+## Skill
+
+- **limam-adhibere** (`-LA` · `-CLA` · `-AD`): pensiero critico e laterale su un'idea o su qualunque cosa, senza codice né piani.
+- **inspectio-decoris** (`-ID`): analisi UX ed estetica di un'app web esistente, con prove dal browser e dal codice.
+- **sequere-pulchritudinem** (`-SP`): applica un restyle già approvato, fase per fase, e lo verifica nel browser.
+- **nec-plus-quam-oportet** (`-NPQO`, sempre attiva): la soluzione più semplice che funziona, basata su ponytail (MIT).
+- **vitium-ostendere** (`-VO`): corregge un bug partendo da un test che fallisce.
+- **sine-more-interposita** (`-SMI`, sempre attiva): finire davvero, agire invece di chiedere, risposte corte in italiano facile.
+- **festina-lente** (`-FL`): esegue un piano lungo senza di te; le decisioni costose si fermano in un file di debiti.
+- **alea-iacta-est** (`-AIE`): esegue un piano lungo senza di te; le decisioni costose le prende Claude e le registra.
+- **status-rei** (`-STR`): statusline con modello, effort, branch, contesto usato e modalità attive.
+- **summa-rerum** (`-SR`): l'help del marketplace.
+
+## Casi d'uso
+
+### limam-adhibere
+
+- Hai un'idea e vuoi sapere se sta in piedi prima di investirci tempo: `-LA` seguito dall'idea. Tre blocchi (capire, valutare, decidere), uno per turno; scrivi `prosegui` per passare al successivo.
+- Vuoi una passata veloce su un testo, un prompt, un progetto o una decisione: `-CLA` seguito dal testo. 5 pregi, 5 difetti, 5 miglioramenti, di cui almeno due nati dal pensiero laterale.
+- Ti sembra già una buona idea e vuoi che qualcuno provi a smontarla: `-AD`. Solo contro: assunzioni nascoste, pre-mortem ("è passato un anno ed è fallito: perché?"), l'obiezione più forte. Poi puoi rispondere, e ti dice se la tua difesa regge.
+
+### inspectio-decoris e sequere-pulchritudinem
+
+- L'app funziona ma sembra datata, o non sai perché una pagina non convince: `-ID` seguito da URL o cartella. Livelli: `-ID rapida`, `-ID` (standard), `-ID completa`. Non tocca il codice; il piano di interventi finisce in `docs/ux/piano-restyle.md`.
+- Hai approvato il piano e vuoi applicarlo: `-SP applica la fase 1`. Ogni intervento viene verificato nel browser con le stesse misure dell'analisi.
+
+### nec-plus-quam-oportet e vitium-ostendere
+
+- Sempre attiva: quando chiedi del codice, Claude riusa quello che c'è già e scrive il minimo che funziona. `-NPQO levis` per allentare, `-NPQO ultra` per stringere, `-NPQO off` per spegnerla.
+- C'è un bug e vuoi la certezza che non torni: `-VO` seguito dalla descrizione. Prima un test che lo riproduce e fallisce, poi la correzione minima, poi lo stesso test verde.
+
+### sine-more-interposita
+
+- Sempre attiva: risposte corte, lavoro finito invece di mezzo finito, domande solo quando servono davvero. Ogni risposta inizia con una riga ⚡: se sparisce (succede dopo una compattazione del contesto), riscrivi `-SMI`.
+
+### festina-lente e alea-iacta-est
+
+- Hai un piano lungo e devi allontanarti: `-FL` seguito dal piano. Le attività con una decisione che costerebbe refactoring si fermano, Claude passa alle altre, e al ritorno trovi i dubbi in `DEBITI.md` (o in un doc claude.ai).
+- Stesso caso, ma preferisci che decida Claude: `-AIE` seguito dal piano. Scrive almeno tre opzioni, sceglie, isola la scelta in un solo punto e la registra in `DECISIONI.md` (o in un doc claude.ai).
+
+### status-rei
+
+- Vuoi vedere in basso modello, contesto usato e modalità attive: `-STR`. `-STR off` per toglierla.
+
+### summa-rerum
+
+- Non ricordi una sigla: `-SR` stampa la tabella di tutte le skill.
 
 ## Aggiungere un plugin
 
