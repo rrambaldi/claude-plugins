@@ -1,6 +1,6 @@
 {
   "name": "status-rei",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Statusline su richiesta: modello, effort, cartella, branch, contesto usato, quanto resta dei limiti di 5 ore e settimanale e badge delle modalità attive (nec plus, sine mora). /status-rei o -STR (-STR off per disattivare).",
   "author": {
     "name": "rrambaldi"

@@ -41,7 +41,9 @@ def branch(cwd):
                               capture_output=True, text=True, timeout=1)
         if name.returncode != 0 or not name.stdout.strip():
             return None
-        dirty = subprocess.run(["git", "-C", cwd, "status", "--porcelain"],
+        # Without the flag status rewrites the index under index.lock, and a
+        # commit landing at the same moment fails.
+        dirty = subprocess.run(["git", "--no-optional-locks", "-C", cwd, "status", "--porcelain"],
                                capture_output=True, text=True, timeout=1)
         return name.stdout.strip() + ("*" if dirty.stdout.strip() else "")
     except (OSError, subprocess.SubprocessError):

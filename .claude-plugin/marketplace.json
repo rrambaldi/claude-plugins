@@ -10,7 +10,7 @@
     {
       "name": "omnia",
       "description": "Tutto l'armamentarium in un colpo solo: tutte le skill di tutti i plugin, con i loro hook.",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "source": "./",
       "strict": false,
       "skills": [
@@ -103,7 +103,7 @@
     {
       "name": "status-rei",
       "description": "Statusline su richiesta: modello, effort, cartella, branch, contesto usato, quanto resta dei limiti di 5 ore e settimanale e badge delle modalità attive. /status-rei o -STR (-STR off per disattivare).",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "source": "./plugins/status-rei",
       "category": "productivity"
     },
