@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Armamentarium in Claude Code: toglie ponytail e modalita-fastidio (plugin, skill, hook), aggiunge
-# il marketplace, installa omnia (tutte le skill, con i loro hook) a livello utente, ne accende le
-# skill in skillOverrides e accende l'aggiornamento automatico del marketplace. Si può
-# rilanciare quante volte vuoi. I livelli progetto e locale valgono per la cartella da cui lo lanci.
+# il marketplace, installa omnia (tutte le skill, con i loro hook) a livello utente se l'organizzazione
+# non lo dà già da claude.ai, ne accende le skill in skillOverrides e accende l'aggiornamento
+# automatico del marketplace. Si può rilanciare quante volte vuoi. I livelli progetto e locale
+# valgono per la cartella da cui lo lanci.
 # Prima di cancellare i file rimasti chiede conferma; con -y li cancella senza chiedere.
 #
 #   curl -fsSL https://raw.githubusercontent.com/rrambaldi/claude-plugins/main/install.sh | bash
@@ -112,22 +113,44 @@ cl plugin marketplace add "$REPO" --scope user
 cl plugin marketplace update "$MARKETPLACE"
 
 echo "4/5 $PLUGIN (utente)"
+# Se l'organizzazione mette omnia su claude.ai come Required o Installed by default, Claude Code lo
+# sincronizza da solo: installato anche qui, ogni skill comparirebbe due volte.
+sincronizzato=no
+if command -v python3 >/dev/null && python3 - "$HOME/.claude/plugins/synced" <<'PY'
+import glob, json, os, sys
+for f in glob.glob(os.path.join(sys.argv[1], "*", "manifest.json")):
+    try:
+        plugins = json.load(open(f)).get("plugins", [])
+    except Exception:
+        continue
+    if any(p.get("name") == "omnia" and p.get("installationPreference") in ("required", "auto_install")
+           for p in plugins):
+        sys.exit(0)
+sys.exit(1)
+PY
+then
+  sincronizzato=si
+fi
 # Solo omnia e solo a livello utente: un plugin singolo, o omnia in un altro livello, fanno
 # comparire le skill due volte.
 utente=no
 while read -r id scope; do
-  if [ "$id" = "$PLUGIN" ] && [ "$scope" = user ]; then
+  if [ "$id" = "$PLUGIN" ] && [ "$scope" = user ] && [ "$sincronizzato" = no ]; then
     utente=si
   elif [[ "$id" == *@"$MARKETPLACE" ]]; then
     togli "$id" "$scope"
   fi
 done < <(installati)
-if [ "$utente" = si ]; then
-  cl plugin update "$PLUGIN" --scope user
+if [ "$sincronizzato" = si ]; then
+  echo "   omnia arriva già dall'organizzazione (claude.ai): non lo installo anche qui"
 else
-  cl plugin install "$PLUGIN" --scope user
+  if [ "$utente" = si ]; then
+    cl plugin update "$PLUGIN" --scope user
+  else
+    cl plugin install "$PLUGIN" --scope user
+  fi
+  out=$(cl plugin enable "$PLUGIN" --scope user 2>&1) || grep -q "already enabled" <<<"$out" || { echo "$out" >&2; exit 1; }
 fi
-out=$(cl plugin enable "$PLUGIN" --scope user 2>&1) || grep -q "already enabled" <<<"$out" || { echo "$out" >&2; exit 1; }
 # Skill di omnia su "on" nei settings utente. Nei settings di progetto e locali un'eccezione per la
 # stessa skill vincerebbe su quella utente: lì si tolgono quelle che la spengono.
 # Nei settings utente anche autoUpdate: per i marketplace non ufficiali parte spento.

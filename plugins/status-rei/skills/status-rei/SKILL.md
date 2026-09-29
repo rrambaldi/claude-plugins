@@ -1,6 +1,6 @@
 ---
 name: status-rei
-description: Attiva o disattiva la statusline status-rei in Claude Code - modello, effort, cartella, branch, contesto usato e badge delle modalità attive (nec plus, sine mora). Modifica file dell'utente, quindi usala solo su richiesta esplicita, per esempio "/status-rei", la sigla "-STR" (attiva) o "-STR off" (disattiva), con o senza slash e in qualunque combinazione di maiuscole, "status rei", "attiva status-rei", "attiva la statusline", "togli status-rei", "disattiva la statusline".
+description: Attiva o disattiva la statusline status-rei in Claude Code - modello, effort, cartella, branch, contesto usato, quanto resta dei limiti di 5 ore e settimanale e badge delle modalità attive (nec plus, sine mora). Modifica file dell'utente, quindi usala solo su richiesta esplicita, per esempio "/status-rei", la sigla "-STR" (attiva) o "-STR off" (disattiva), con o senza slash e in qualunque combinazione di maiuscole, "status rei", "attiva status-rei", "attiva la statusline", "togli status-rei", "disattiva la statusline".
 ---
 
 # status rei

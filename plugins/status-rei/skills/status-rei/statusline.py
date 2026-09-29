@@ -13,6 +13,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 
 HOME = os.path.expanduser("~/.claude")
 
@@ -27,6 +28,10 @@ OFF = "\033[0m"
 
 # nec plus badge by level: the tool cuts harder as the level rises. "off" gets none.
 NEC_PLUS_BADGES = {"lite": "🪶  nec plus levis", "full": "✂️  nec plus", "ultra": "🪓  nec plus ultra"}
+
+# Plan limits as the CLI names them, with the label each gets on the line.
+RATE_LIMITS = (("five_hour", "5 ore"), ("seven_day", "settimana"))
+DAYS = ("lun", "mar", "mer", "gio", "ven", "sab", "dom")
 
 
 def branch(cwd):
@@ -92,18 +97,39 @@ def main():
     if state.get("exceeds_200k_tokens"):
         parts.append(f"{WARN}200k+{OFF}")
 
+    # Second line: how much work is left, and how Claude is working.
+    below = []
+
+    # What is left of each plan limit and when it starts over: the share left,
+    # not used, because the question is how much work still fits. A window
+    # already past its reset is stale, so it is left out.
+    limits = state.get("rate_limits") or {}
+    for key, label in RATE_LIMITS:
+        limit = limits.get(key) or {}
+        spent, resets = limit.get("used_percentage"), limit.get("resets_at")
+        if spent is None or not resets or resets <= time.time():
+            continue
+        left = max(0, 100 - int(spent))
+        colour = WARN if left <= 10 else (EFFORT if left <= 30 else DIM)
+        when = time.localtime(resets)
+        at = time.strftime("%H:%M", when)
+        if key == "seven_day":
+            at = f"{DAYS[when.tm_wday]} {at}"
+        below.append(f"{colour}{label} resta {left}% → {at}{OFF}")
+
     # Modes switched on by SessionStart hooks, each leaving a flag file.
     try:
         with open(os.path.join(HOME, ".nec-plus-active")) as handle:
             badge = NEC_PLUS_BADGES.get(handle.readline().strip() or "full")
         if badge:
-            parts.append(f"\033[38;5;108m{badge}{OFF}")
+            below.append(f"\033[38;5;108m{badge}{OFF}")
     except OSError:
         pass
     if os.path.exists(os.path.join(HOME, ".sine-more-active")):
-        parts.append(f"{WARN}⚡ sine mora{OFF}")
+        below.append(f"{WARN}⚡ sine mora{OFF}")
 
-    print(f"{DIM} · {OFF}".join(parts))
+    # Each printed line is its own row under the prompt.
+    print("\n".join(f"{DIM} · {OFF}".join(line) for line in (parts, below) if line))
     return 0
 
 

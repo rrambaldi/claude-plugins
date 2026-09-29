@@ -1,0 +1,8 @@
+{
+  "name": "tabula-rasa",
+  "version": "1.0.0",
+  "description": "Igiene dei file temporanei. Sempre attiva: a ogni avvio carica la regola di cancellare i file temporanei creati nella sessione e chiudere ogni task con lo scratchpad vuoto; dopo commit o push chiede /compact. Tabula rasa / -TR: libera spazio in /tmp (sessioni Claude chiuse, file vecchi, -s solo questa sessione) senza toccare file in uso né di altri utenti.",
+  "author": {
+    "name": "rrambaldi"
+  }
+}

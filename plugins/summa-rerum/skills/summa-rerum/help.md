@@ -9,5 +9,7 @@
 | nec-plus-quam-oportet | vitium-ostendere | Corregge un bug partendo da un test che fallisce: da rosso a verde | `Vitium ostendere` / `-VO` | |
 | nomen-mutare | (solo hook) | Ogni 10 prompt dà alla sessione un titolo nuovo, come `/rename`, scritto da Haiku sugli ultimi prompt | Da sola. Ogni quanti prompt: `NOMEN_MUTARE_OGNI` in `env` dei settings; `0` la spegne | sì |
 | sine-more-interposita | sine-more-interposita | Finire davvero, agire invece di chiedere, andare veloce, risposte corte in italiano facile; non tocca il lavoro di `-LA` / `-CLA` / `-AD` | `Sine more interposita` / `-SMI` | sì |
-| status-rei | status-rei | Statusline con modello, effort, branch, contesto e badge delle modalità | `Status rei` / `-STR` (attiva) · `-STR off` (disattiva) | |
+| status-rei | status-rei | Statusline con modello, effort, branch, contesto, quanto resta dei limiti di 5 ore e settimanale e badge delle modalità | `Status rei` / `-STR` (attiva) · `-STR off` (disattiva) | |
 | summa-rerum | summa-rerum | L'help del marketplace: questa tabella | `Summa rerum` / `-SR` | |
+| tabula-rasa | (hook) | Igiene dei file temporanei: Claude cancella quelli che crea, ferma i processi in background e chiude ogni task con lo scratchpad vuoto; dopo commit o push chiede `/compact` | Da sola | sì |
+| tabula-rasa | tabula-rasa | Libera spazio in `/tmp`: sessioni Claude chiuse, file vecchi, log aperti troppo grandi; prima la simulazione, mai file in uso o di altri utenti; Linux e Windows | `Tabula rasa` / `-TR` · `-TR -s` (solo questa sessione) · `-d GIORNI` · `-i MINUTI` · `-t SIZE` | |

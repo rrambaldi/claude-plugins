@@ -10,7 +10,7 @@
     {
       "name": "omnia",
       "description": "Tutto l'armamentarium in un colpo solo: tutte le skill di tutti i plugin, con i loro hook.",
-      "version": "1.5.2",
+      "version": "1.6.0",
       "source": "./",
       "strict": false,
       "skills": [
@@ -23,7 +23,8 @@
         "./plugins/nec-plus-quam-oportet/skills/vitium-ostendere",
         "./plugins/sine-more-interposita/skills/sine-more-interposita",
         "./plugins/status-rei/skills/status-rei",
-        "./plugins/summa-rerum/skills/summa-rerum"
+        "./plugins/summa-rerum/skills/summa-rerum",
+        "./plugins/tabula-rasa/skills/tabula-rasa"
       ],
       "hooks": {
         "SessionStart": [
@@ -36,6 +37,10 @@
               {
                 "type": "command",
                 "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/plugins/nec-plus-quam-oportet\" bash \"${CLAUDE_PLUGIN_ROOT}/plugins/nec-plus-quam-oportet/hooks/load-rules.sh\""
+              },
+              {
+                "type": "command",
+                "command": "cat \"${CLAUDE_PLUGIN_ROOT}/plugins/tabula-rasa/hooks/temp-policy.md\""
               }
             ]
           }
@@ -97,8 +102,8 @@
     },
     {
       "name": "status-rei",
-      "description": "Statusline su richiesta: modello, effort, cartella, branch, contesto usato e badge delle modalità attive. /status-rei o -STR (-STR off per disattivare).",
-      "version": "1.1.0",
+      "description": "Statusline su richiesta: modello, effort, cartella, branch, contesto usato, quanto resta dei limiti di 5 ore e settimanale e badge delle modalità attive. /status-rei o -STR (-STR off per disattivare).",
+      "version": "1.2.0",
       "source": "./plugins/status-rei",
       "category": "productivity"
     },
@@ -121,6 +126,13 @@
       "description": "Ogni 10 prompt dà alla sessione un titolo nuovo, come /rename, scritto da Haiku sugli ultimi prompt. Ogni quanti prompt: NOMEN_MUTARE_OGNI nei settings (0 lo spegne).",
       "version": "1.0.0",
       "source": "./plugins/nomen-mutare",
+      "category": "productivity"
+    },
+    {
+      "name": "tabula-rasa",
+      "description": "Igiene dei file temporanei. Sempre attiva: a ogni avvio carica la regola di cancellare i file temporanei creati nella sessione e chiudere ogni task con lo scratchpad vuoto; dopo commit o push chiede /compact. Tabula rasa / -TR: libera spazio in /tmp (sessioni Claude chiuse, file vecchi, -s solo questa sessione) senza toccare file in uso né di altri utenti.",
+      "version": "1.0.0",
+      "source": "./plugins/tabula-rasa",
       "category": "productivity"
     }
   ]
