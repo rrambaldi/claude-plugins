@@ -9,8 +9,9 @@ Due skill che lavorano in coppia su un'applicazione web esistente.
 
 ## Flusso
 
-1. *Analisi UX* (`-AUX`) sull'app. La skill si ferma dopo la ricognizione del codice per farti confermare
-   persona e flussi, poi percorre l'app e consegna due file:
+1. *Analisi UX* (`-AUX`) sull'app, in quattro turni: ricognizione del codice, percorso nel browser, misure e
+   analisi visiva, sintesi. Dopo ciascuno si ferma: scrivi `prosegui`, o correggi persona e flussi. Il report si
+   aggiorna a ogni turno, e alla fine restano due file:
    - `docs/ux/analisi-AAAA-MM-GG.md`, il report;
    - `docs/ux/piano-restyle.md`, il contratto per il restyle.
 2. Scegli la direzione (conservativa o trasformativa) e approva una o più fasi nel piano.
@@ -20,8 +21,9 @@ Due skill che lavorano in coppia su un'applicazione web esistente.
 ## Requisiti
 
 - Uno strumento browser capace di eseguire JavaScript nella pagina: Playwright MCP in Claude
-  Code, oppure Claude in Chrome o il browser integrato in Cowork. Senza browser l'analisi diventa
-  statica e lo dichiara.
+  Code, oppure Claude in Chrome o il browser integrato in Cowork. Senza, se c'è Node e sei d'accordo
+  a scaricarli, usa Playwright con un Chromium headless (`scripts/headless.cjs`). Se non si può,
+  l'analisi diventa statica e lo dichiara.
 - Accesso al repository dell'app e, se serve, un account di test. Meglio uno staging: la skill
   non esegue azioni irreversibili su dati reali senza consenso.
 

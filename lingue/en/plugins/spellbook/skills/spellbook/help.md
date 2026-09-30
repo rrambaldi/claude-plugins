@@ -2,7 +2,7 @@
 |---|---|---|---|---|
 | make-haste-slowly | the-die-is-cast | Esegue un piano lungo senza fermarsi: sulle decisioni costose sceglie tra tre opzioni e registra la scelta | `The die is cast` / `-TDC` | |
 | make-haste-slowly | make-haste-slowly | Esegue un piano lungo senza decidere al posto tuo: i dubbi costosi si fermano e finiscono in un file da controllare | `Make haste slowly` / `-MHS` | |
-| ux-audit | ux-audit | Analisi UX ed estetica di un'app web esistente, con prove dal browser e dal codice | `UX audit` / `-UXA` | |
+| ux-audit | ux-audit | Analisi UX ed estetica di un'app web esistente, in quattro turni, con prove dal browser (anche headless) e dal codice | `UX audit` / `-UXA` | |
 | ux-audit | apply-restyle | Applica un restyle già approvato, fase per fase, e lo verifica nel browser | `Apply restyle` / `-AR` | |
 | critical-review | swot-analysis | Analisi SWOT: forze e debolezze, opportunità e minacce, poi gli incroci che dicono cosa farne | `SWOT analysis` / `-SWOT` | |
 | critical-review | critical-review | Pensiero critico su un'idea: niente codice né piani | `Critical review` / `-CR` (completa) · `Quick critique` / `-QC` (rapida: 5 pregi, 5 difetti, 5 miglioramenti, 5 pensieri laterali) · `Devil's advocate` / `-DA` (solo contro) | |

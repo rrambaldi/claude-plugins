@@ -1,8 +1,9 @@
 # Prove nel browser
 
 Come raccogliere prove verificabili. Usa lo strumento browser già disponibile nell'ambiente
-(Playwright MCP, Claude in Chrome, browser integrato dell'app, playwright da riga di comando). Non
-installare browser o framework solo per questa skill senza che l'utente lo chieda.
+(Playwright MCP, Claude in Chrome, browser integrato dell'app, playwright da riga di comando). Se
+non ce n'è nessuno, il ripiego è la sezione 8, e installa qualcosa solo con il consenso
+dell'utente.
 
 ## Indice
 
@@ -13,7 +14,7 @@ installare browser o framework solo per questa skill senza che l'utente lo chied
 5. Misure con `scripts/misure.js`
 6. Accessibilità con axe-core
 7. Metriche di caricamento
-8. Senza browser
+8. Senza browser MCP
 
 ## 1. Scelta dell'URL
 
@@ -123,9 +124,41 @@ caricamento), dichiaralo `[?]`. Soglie pragmatiche: LCP oltre 4 s o CLS oltre 0.
 Una singola misura su una macchina non è una statistica: riportala come indicazione, con le
 condizioni (rete, cache).
 
-## 8. Senza browser
+## 8. Senza browser MCP
 
-Se nessuno strumento browser è disponibile o raggiunge l'app:
+### Ripiego headless
+
+Se non c'è uno strumento browser ma c'è Node (18 o più) e un URL che questa macchina raggiunge,
+anche `localhost`, `scripts/headless.cjs` apre le pagine in un Chromium headless. A ogni viewport
+salva lo screenshot a pagina intera e lancia le misure di `misure.js`, con errori di console e
+risposte 4xx/5xx.
+
+Serve Playwright. Se il progetto lo ha già tra le dipendenze, usa quello. Altrimenti chiedi il
+consenso, perché scarica il pacchetto e un Chromium, e installa il pacchetto fuori dal progetto,
+nello scratchpad della sessione:
+
+```sh
+T=<scratchpad>/playwright
+npm install --prefix "$T" playwright
+"$T/node_modules/.bin/playwright" install chromium
+NODE_PATH="$T/node_modules" node scripts/headless.cjs "$T/prove" 390x844,1440x900 https://staging.example.com/fatture
+```
+
+Con il Playwright del progetto: `NODE_PATH=<repo>/node_modules node scripts/headless.cjs …`, e se
+manca il browser `npx playwright install chromium` dal repo, sempre con il consenso.
+
+- Lo script stampa una riga JSON per pagina e viewport: le misure sono `[M]`. Guarda gli
+  screenshot che salva: valgono `[V]`.
+- Per un flusso con interazione (login, un form, una modale) scrivi nella stessa cartella uno
+  script Playwright con i passi, sullo stesso modello, e riporta ogni passo nel registro delle prove.
+- Se Chromium non parte per librerie di sistema mancanti, dillo: installarle chiede `sudo`, e
+  decide l'utente.
+- Alla fine togli la cartella `$T`. Chromium resta in `~/.cache/ms-playwright`: chiedi se tenerlo
+  per *Apply restyle* (`-AR`) o toglierlo.
+
+### Senza browser
+
+Se non si può neanche il ripiego (niente Node, niente URL raggiungibile, niente consenso):
 
 1. dichiaralo in testa al report e metti il verdetto al massimo a **Incompleto** per le
    dimensioni che richiedono il percorso;

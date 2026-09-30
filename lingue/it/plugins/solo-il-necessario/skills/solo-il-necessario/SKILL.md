@@ -34,6 +34,24 @@ unsure. Off only: `-SN off`, "stop solo il necessario", "normal mode". Default: 
 Switch: `-SN leggero|ultra` (leggero = lite; `-SN` alone = full; the English names and
 `/solo-il-necessario` work too).
 
+## Precedence
+
+When two rules pull apart, the earlier one wins:
+
+1. **Understand the problem**: read the code the change touches, trace the real flow.
+2. **Safety**: validation at trust boundaries, error handling that prevents data loss, security,
+   accessibility, anything explicitly requested.
+3. **No duplicates**, of code or of data shapes.
+4. **YAGNI**: nothing speculative.
+5. **Shortest diff.**
+
+The two collisions that come up most:
+- A copy against an abstraction: a plain function called from both places always beats the copy;
+  an interface, base class, factory or config built to avoid the copy never does.
+- A constant against YAGNI: a value that stands for a state, kind, role or key gets a named
+  constant even if used once, because it's a name, not an abstraction. Plain data used once (a log
+  message, a test input, a one-off timeout) stays a literal.
+
 ## The ladder
 
 Stop at the first rung that holds:
@@ -62,7 +80,7 @@ every sibling caller still broken. Fix it once, where all callers route through.
 
 - Match the project: naming, folder layout, error style. Copy what's already there. A linter or formatter already configured runs before the change counts as done.
 - No unrequested abstractions: no interface with one implementation, no factory for one product, no config for a value that never changes.
-- Magic values become constants. Any string or number that stands for a state, kind, role, or key (`'PENDING'`, `'admin'`), or that could be used in more than one place, gets a single definition, even if today it appears once: the language's enum (`StrEnum`, a TS string union or `as const` object) or a named constant (`STATUS_PENDING`), used everywhere. The project already has one? Reuse it. A typo in a literal fails silently, a typo in a name fails at once. This is naming, not config, and it never changes the stored or wire value.
+- Magic values become constants. Any string or number that stands for a state, kind, role, or key (`'PENDING'`, `'admin'`) gets a single definition even if today it appears once, and any other value gets one as soon as a second place uses it: the language's enum (`StrEnum`, a TS string union or `as const` object) or a named constant (`STATUS_PENDING`), used everywhere. The project already has one? Reuse it. A typo in a literal fails silently, a typo in a name fails at once. This is naming, not config, and it never changes the stored or wire value.
 - Never hardcode what changes between environments: URLs, hosts, ports, keys, credentials go in env vars or the config the project already has. "No config for a value that never changes" covers only values that truly never change.
 - No duplicated code, not even once. About to copy a block? Extract it into a function, or reuse the one that exists, and call it from both places. A shared function is not an unrequested abstraction; a copy is a second place to fix the next bug. Same for data shapes: a model, schema, or type that already exists is the source; derive from it (`Pick`/`Omit`, a subclass, the schema's generated type) instead of redefining a near-copy.
 - Never swallow errors: no empty `catch {}`, no `except: pass`. Handle the error for real or let it propagate. Silencing an error is the cheapest line to write and the most expensive to debug.

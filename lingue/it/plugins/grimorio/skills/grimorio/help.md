@@ -2,7 +2,7 @@
 |---|---|---|---|---|
 | chi-va-piano | il-dado-e-tratto | Esegue un piano lungo senza fermarsi: sulle decisioni costose sceglie tra tre opzioni e registra la scelta | `Il dado è tratto` / `-DT` | |
 | chi-va-piano | chi-va-piano | Esegue un piano lungo senza decidere al posto tuo: i dubbi costosi si fermano e finiscono in un file da controllare | `Chi va piano` / `-CVP` | |
-| analisi-ux | analisi-ux | Analisi UX ed estetica di un'app web esistente, con prove dal browser e dal codice | `Analisi UX` / `-AUX` | |
+| analisi-ux | analisi-ux | Analisi UX ed estetica di un'app web esistente, in quattro turni, con prove dal browser (anche headless) e dal codice | `Analisi UX` / `-AUX` | |
 | analisi-ux | applica-restyle | Applica un restyle già approvato, fase per fase, e lo verifica nel browser | `Applica restyle` / `-AR` | |
 | analisi-critica | analisi-swot | Analisi SWOT: forze e debolezze, opportunità e minacce, poi gli incroci che dicono cosa farne | `Analisi SWOT` / `-SWOT` | |
 | analisi-critica | analisi-critica | Pensiero critico su un'idea: niente codice né piani | `Analisi critica` / `-AC` (completa) · `Critica veloce` / `-CV` (rapida: 5 pregi, 5 difetti, 5 miglioramenti, 5 pensieri laterali) · `Avvocato del diavolo` / `-AD` (solo contro) | |

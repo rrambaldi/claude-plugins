@@ -2,7 +2,7 @@
 |---|---|---|---|---|
 | festina-lente | alea-iacta-est | Esegue un piano lungo senza fermarsi: sulle decisioni costose sceglie tra tre opzioni e registra la scelta | `Alea iacta est` / `-AIE` | |
 | festina-lente | festina-lente | Esegue un piano lungo senza decidere al posto tuo: i dubbi costosi si fermano e finiscono in un file da controllare | `Festina lente` / `-FL` | |
-| inspectio-decoris | inspectio-decoris | Analisi UX ed estetica di un'app web esistente, con prove dal browser e dal codice | `Inspectio decoris` / `-ID` | |
+| inspectio-decoris | inspectio-decoris | Analisi UX ed estetica di un'app web esistente, in quattro turni, con prove dal browser (anche headless) e dal codice | `Inspectio decoris` / `-ID` | |
 | inspectio-decoris | sequere-pulchritudinem | Applica un restyle già approvato, fase per fase, e lo verifica nel browser | `Sequere pulchritudinem` / `-SP` | |
 | limam-adhibere | intus-et-extra | Analisi SWOT: forze e debolezze, opportunità e minacce, poi gli incroci che dicono cosa farne | `Intus et extra` / `-IE` | |
 | limam-adhibere | limam-adhibere | Pensiero critico su un'idea: niente codice né piani | `Limam adhibere` / `-LA` (completa) · `Celeri lima adhibita` / `-CLA` (rapida: 5 pregi, 5 difetti, 5 miglioramenti, 5 pensieri laterali) · `Advocatus diaboli` / `-AD` (solo contro) | |

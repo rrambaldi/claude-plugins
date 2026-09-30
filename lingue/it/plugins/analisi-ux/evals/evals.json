@@ -6,7 +6,7 @@
       "id": 1,
       "name": "gestionale-standard",
       "prompt": "-AUX su <URL staging del gestionale>, repo in <percorso>. La usano impiegate amministrative che inseriscono fatture tutto il giorno. Account di test: <utente>/<password>.",
-      "expected_output": "Pausa dopo la ricognizione; poi report e piano in docs/ux con rilievi etichettati [M]/[V]/[C], registro delle prove, contrasto misurato, verdetto non compensabile, due direzioni, elenco Da non toccare.",
+      "expected_output": "Quattro turni con pausa dopo ricognizione, percorso e misure; il report in docs/ux cresce a ogni turno con la riga Stato; alla fine report e piano in docs/ux con rilievi etichettati [M]/[V]/[C], registro delle prove, contrasto misurato, verdetto non compensabile, due direzioni, elenco Da non toccare.",
       "files": []
     },
     {
@@ -21,6 +21,13 @@
       "name": "senza-browser",
       "prompt": "-AUX rapida sul repo in <percorso>, non ho un ambiente online",
       "expected_output": "Dichiara l'assenza di browser, analisi statica del codice, valori visivi marcati [S] o [?], verdetto al massimo Incompleto per le dimensioni non verificate, elenco di verifiche manuali.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "headless",
+      "prompt": "-AUX rapida su <URL staging>, repo in <percorso>. Qui non ho Playwright MCP né Chrome.",
+      "expected_output": "Propone il ripiego headless e chiede il consenso prima di scaricare Playwright e Chromium; con il sì usa scripts/headless.cjs, riporta le misure come [M] e gli screenshot come [V], toglie la cartella temporanea e chiede se tenere Chromium.",
       "files": []
     }
   ]

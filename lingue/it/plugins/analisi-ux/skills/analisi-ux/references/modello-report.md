@@ -34,6 +34,7 @@ File: `docs/ux/analisi-AAAA-MM-GG.md`
 
 ```markdown
 # Analisi UX: [nome app]
+Stato: turno N di 4, fatto fino a [fase] · prossimo: [fase] (a fine analisi: completo)
 Data · URL e ambiente · commit analizzato · livello (rapido/standard/completo)
 Persona · flussi percorsi · strumenti usati · cosa NON è stato verificato e perché
 

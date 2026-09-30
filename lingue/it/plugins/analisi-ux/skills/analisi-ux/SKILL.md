@@ -78,6 +78,25 @@ mirata con gli stessi principi e salta le sezioni non pertinenti, dichiarandolo 
 
 ## Flusso
 
+Quattro turni, e alla fine di ciascuno ti fermi: in una sola risposta le ultime fasi (sintesi,
+direzioni, piano) escono compresse, e sono quelle che l'utente userà. La pausa serve anche a
+correggere persona e flussi prima che il resto dell'analisi li dia per buoni.
+
+| Turno | Fasi | Chiusura |
+|---|---|---|
+| 1 | 0 Cancello, 1 Ricognizione | *"Scrivi **prosegui** per il percorso nel browser, oppure correggi flussi e persona."* |
+| 2 | 2 Percorso nel browser | *"Scrivi **prosegui** per le misure e l'analisi visiva."* |
+| 3 | 3 Misure, 4 Analisi visiva | *"Scrivi **prosegui** per sintesi, direzioni e piano."* |
+| 4 | 5 Sintesi, 6 Autocritica, 7 Consegna | la chiusura della Fase 7 |
+
+A ogni turno scrivi nel report (`docs/ux/analisi-AAAA-MM-GG.md`) quello che il turno ha trovato e
+aggiorna la riga **Stato** in testa: il lavoro fatto è nel file, non solo nella conversazione. Se
+in `docs/ux/` c'è già un report con uno stato intermedio, chiedi se riprenderlo dal turno dopo.
+
+Al livello rapido i turni 2-4 sono uno solo, e se persona e flusso sono già chiari anche il primo:
+dichiara le assunzioni in testa al report. Se l'utente chiede tutto in un turno, fai le fasi di
+fila.
+
 ### Fase 0: Cancello
 
 Raccogli ciò che serve, usando quello che già sai dalla conversazione e dal repository invece di
@@ -94,8 +113,10 @@ Se manca qualcosa che cambierebbe le conclusioni (persona, flussi, accesso), fai
 domande in un solo messaggio e fermati. Altrimenti dichiara le assunzioni e procedi.
 
 Verifica anche gli strumenti: browser disponibile (Playwright MCP, Claude in Chrome, browser
-integrato o altro) e capacità di eseguire JavaScript nella pagina. Se il browser manca, dillo:
-l'analisi diventa statica (codice e screenshot forniti) e ogni conclusione visiva sarà `[S]` o `[?]`.
+integrato o altro) e capacità di eseguire JavaScript nella pagina. Se manca ma c'è Node, proponi il
+ripiego headless di `references/prove-browser.md` §8: scarica Playwright e Chromium, quindi serve
+il consenso. Senza consenso, senza Node o senza un URL raggiungibile, dillo: l'analisi diventa
+statica (codice e screenshot forniti) e ogni conclusione visiva sarà `[S]` o `[?]`.
 
 ### Fase 1: Ricognizione del codice
 
@@ -106,11 +127,9 @@ Senza modificare nulla, ricava dal repository:
 - token e design system esistenti, anche impliciti (colori e spaziature più ricorrenti);
 - componenti riusati e duplicati (per esempio tre varianti di bottone).
 
-Poi **fermati** e presenta in forma breve: persona, flussi scelti, inventario, livello di analisi,
-strumenti disponibili, assunzioni. Chiudi con: *"Scrivi **prosegui** per il percorso nel browser,
-oppure correggi flussi e persona."* La pausa costa un messaggio; un percorso nel browser sui flussi
-sbagliati costa tutta l'analisi. Al livello rapido, se persona e flusso sono già chiari, salta la
-pausa e dichiara le assunzioni in testa al report.
+Poi presenta in forma breve: persona, flussi scelti, inventario, livello di analisi, strumenti
+disponibili, assunzioni e dove salverai il report. La pausa costa un messaggio; un percorso nel
+browser sui flussi sbagliati costa tutta l'analisi.
 
 ### Fase 2: Percorso nel browser
 
@@ -177,10 +196,9 @@ elenco dei rilievi: chi li ha scritti tende a difenderli. Registra il conteggio 
 
 ### Fase 7: Consegna
 
-Salva due file nel repository (chiedi prima se preferisci un'altra posizione, e non committare
-senza consenso):
+Nel repository restano due file, nella posizione detta al turno 1 (non committare senza consenso):
 
-- `docs/ux/analisi-AAAA-MM-GG.md`: il report completo;
+- `docs/ux/analisi-AAAA-MM-GG.md`: il report, ora con **Stato: completo**;
 - `docs/ux/piano-restyle.md`: il contratto per `applica-restyle`.
 
 Modelli di entrambi in `references/modello-report.md`.
@@ -235,11 +253,12 @@ ciò che nessuna checklist vede. Marcalo `[P]`.
 
 | Quando | Leggi |
 |---|---|
-| Fase 2 e 3: browser, viewport, registro, misure, assenza di browser | `references/prove-browser.md` |
+| Fase 2 e 3: browser, viewport, registro, misure, ripiego headless, assenza di browser | `references/prove-browser.md` |
 | Fase 2: scenari di stress e sguardo per dominio | `references/scenari.md` |
 | Fase 4: criteri visivi, estetica, catalogo dei cliché | `references/criteri-visivi.md` |
 | Fase 5 e 7: formato dei rilievi, report, piano per applica-restyle | `references/modello-report.md` |
 | Misure automatiche nel browser | `scripts/misure.js` |
+| Screenshot e misure senza browser MCP | `scripts/headless.cjs` |
 
 ## Formato
 

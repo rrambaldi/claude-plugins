@@ -170,7 +170,7 @@ Il set latino in `plugins/` è l'unico che si scrive a mano. `python3 lingue/gen
 
 ### inspectio-decoris e sequere-pulchritudinem
 
-- L'app funziona ma sembra datata, o non sai perché una pagina non convince: *Inspectio decoris* (`-ID`) seguito da URL o cartella. Livelli: `-ID rapida`, `-ID` (standard), `-ID completa`. Non tocca il codice; il piano di interventi finisce in `docs/ux/piano-restyle.md`.
+- L'app funziona ma sembra datata, o non sai perché una pagina non convince: *Inspectio decoris* (`-ID`) seguito da URL o cartella. Livelli: `-ID rapida`, `-ID` (standard), `-ID completa`. Quattro turni (ricognizione, percorso, misure, sintesi): scrivi `prosegui` per passare al successivo, e il report si aggiorna nel file a ogni turno. Senza un browser MCP propone un Chromium headless, se sei d'accordo a scaricarlo. Non tocca il codice; il piano di interventi finisce in `docs/ux/piano-restyle.md`.
 - Hai approvato il piano e vuoi applicarlo: *Sequere pulchritudinem* (`-SP`), per esempio `-SP applica la fase 1`. Ogni intervento viene verificato nel browser con le stesse misure dell'analisi.
 
 ### nec-plus-quam-oportet e vitium-ostendere
