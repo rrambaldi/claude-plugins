@@ -2,15 +2,15 @@
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "armamentarium",
   "version": "1.0.0",
-  "description": "Armamentarium: plugin personali per Claude. Il plugin omnia li installa tutti insieme.",
+  "description": "Armamentarium: plugin personali per Claude. Un pacchetto li installa tutti insieme, con i comandi in latino (omnia), italiano (tutto) o inglese (all).",
   "owner": {
     "name": "rrambaldi"
   },
   "plugins": [
     {
       "name": "omnia",
-      "description": "Tutto l'armamentarium in un colpo solo: tutte le skill di tutti i plugin, con i loro hook.",
-      "version": "1.6.1",
+      "description": "Tutto l'armamentarium con i comandi in latino: tutte le skill di tutti i plugin, con i loro hook. Non installarlo insieme a tutto o all.",
+      "version": "1.7.0",
       "source": "./",
       "strict": false,
       "skills": [
@@ -18,6 +18,7 @@
         "./plugins/festina-lente/skills/festina-lente",
         "./plugins/inspectio-decoris/skills/inspectio-decoris",
         "./plugins/inspectio-decoris/skills/sequere-pulchritudinem",
+        "./plugins/limam-adhibere/skills/intus-et-extra",
         "./plugins/limam-adhibere/skills/limam-adhibere",
         "./plugins/nec-plus-quam-oportet/skills/nec-plus-quam-oportet",
         "./plugins/nec-plus-quam-oportet/skills/vitium-ostendere",
@@ -73,9 +74,141 @@
       "category": "productivity"
     },
     {
+      "name": "tutto",
+      "description": "Tutto l'armamentarium con i comandi in italiano: tutte le skill di tutti i plugin, con i loro hook. Non installarlo insieme a omnia o all.",
+      "version": "1.7.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./lingue/it/plugins/chi-va-piano/skills/il-dado-e-tratto",
+        "./lingue/it/plugins/chi-va-piano/skills/chi-va-piano",
+        "./lingue/it/plugins/analisi-ux/skills/analisi-ux",
+        "./lingue/it/plugins/analisi-ux/skills/applica-restyle",
+        "./lingue/it/plugins/analisi-critica/skills/analisi-swot",
+        "./lingue/it/plugins/analisi-critica/skills/analisi-critica",
+        "./lingue/it/plugins/solo-il-necessario/skills/solo-il-necessario",
+        "./lingue/it/plugins/solo-il-necessario/skills/prima-il-test",
+        "./lingue/it/plugins/niente-indugi/skills/niente-indugi",
+        "./lingue/it/plugins/barra-di-stato/skills/barra-di-stato",
+        "./lingue/it/plugins/grimorio/skills/grimorio",
+        "./lingue/it/plugins/fai-pulizia/skills/fai-pulizia"
+      ],
+      "hooks": {
+        "SessionStart": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/lingue/it/plugins/niente-indugi\" bash \"${CLAUDE_PLUGIN_ROOT}/lingue/it/plugins/niente-indugi/hooks/session-start.sh\""
+              },
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/lingue/it/plugins/solo-il-necessario\" bash \"${CLAUDE_PLUGIN_ROOT}/lingue/it/plugins/solo-il-necessario/hooks/load-rules.sh\""
+              },
+              {
+                "type": "command",
+                "command": "cat \"${CLAUDE_PLUGIN_ROOT}/lingue/it/plugins/fai-pulizia/hooks/temp-policy.md\""
+              }
+            ]
+          }
+        ],
+        "SubagentStart": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/lingue/it/plugins/solo-il-necessario\" bash \"${CLAUDE_PLUGIN_ROOT}/lingue/it/plugins/solo-il-necessario/hooks/load-rules.sh\" subagent"
+              }
+            ]
+          }
+        ],
+        "UserPromptSubmit": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/lingue/it/plugins/solo-il-necessario\" bash \"${CLAUDE_PLUGIN_ROOT}/lingue/it/plugins/solo-il-necessario/hooks/load-rules.sh\" prompt"
+              },
+              {
+                "type": "command",
+                "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/lingue/it/plugins/nomen-mutare/hooks/nomen-mutare.py\""
+              }
+            ]
+          }
+        ]
+      },
+      "category": "productivity"
+    },
+    {
+      "name": "all",
+      "description": "The whole armamentarium with English command names (instructions stay in Italian): every skill of every plugin, with its hooks. Don't install it together with omnia or tutto.",
+      "version": "1.7.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./lingue/en/plugins/make-haste-slowly/skills/the-die-is-cast",
+        "./lingue/en/plugins/make-haste-slowly/skills/make-haste-slowly",
+        "./lingue/en/plugins/ux-audit/skills/ux-audit",
+        "./lingue/en/plugins/ux-audit/skills/apply-restyle",
+        "./lingue/en/plugins/critical-review/skills/swot-analysis",
+        "./lingue/en/plugins/critical-review/skills/critical-review",
+        "./lingue/en/plugins/keep-it-simple/skills/keep-it-simple",
+        "./lingue/en/plugins/keep-it-simple/skills/test-first",
+        "./lingue/en/plugins/no-delay/skills/no-delay",
+        "./lingue/en/plugins/status-line/skills/status-line",
+        "./lingue/en/plugins/spellbook/skills/spellbook",
+        "./lingue/en/plugins/clean-slate/skills/clean-slate"
+      ],
+      "hooks": {
+        "SessionStart": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/lingue/en/plugins/no-delay\" bash \"${CLAUDE_PLUGIN_ROOT}/lingue/en/plugins/no-delay/hooks/session-start.sh\""
+              },
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/lingue/en/plugins/keep-it-simple\" bash \"${CLAUDE_PLUGIN_ROOT}/lingue/en/plugins/keep-it-simple/hooks/load-rules.sh\""
+              },
+              {
+                "type": "command",
+                "command": "cat \"${CLAUDE_PLUGIN_ROOT}/lingue/en/plugins/clean-slate/hooks/temp-policy.md\""
+              }
+            ]
+          }
+        ],
+        "SubagentStart": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/lingue/en/plugins/keep-it-simple\" bash \"${CLAUDE_PLUGIN_ROOT}/lingue/en/plugins/keep-it-simple/hooks/load-rules.sh\" subagent"
+              }
+            ]
+          }
+        ],
+        "UserPromptSubmit": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "CLAUDE_PLUGIN_ROOT=\"${CLAUDE_PLUGIN_ROOT}/lingue/en/plugins/keep-it-simple\" bash \"${CLAUDE_PLUGIN_ROOT}/lingue/en/plugins/keep-it-simple/hooks/load-rules.sh\" prompt"
+              },
+              {
+                "type": "command",
+                "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/lingue/en/plugins/nomen-mutare/hooks/nomen-mutare.py\""
+              }
+            ]
+          }
+        ]
+      },
+      "category": "productivity"
+    },
+    {
       "name": "limam-adhibere",
-      "description": "Pensiero critico su un'idea, niente codice né piani. Limam adhibere / -LA completa, Celeri lima adhibita / -CLA rapida, Advocatus diaboli / -AD solo contro.",
-      "version": "1.2.1",
+      "description": "Pensiero critico su un'idea, niente codice né piani. Limam adhibere / -LA completa, Celeri lima adhibita / -CLA rapida, Advocatus diaboli / -AD solo contro, Intus et extra / -IE analisi SWOT.",
+      "version": "1.3.0",
       "source": "./plugins/limam-adhibere",
       "category": "productivity"
     },
@@ -89,14 +222,14 @@
     {
       "name": "sine-more-interposita",
       "description": "Modalità di lavoro per tutta la sessione: finire davvero, agire invece di chiedere, andare veloce, risposte corte. /sine-more-interposita o -SMI.",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "source": "./plugins/sine-more-interposita",
       "category": "productivity"
     },
     {
       "name": "nec-plus-quam-oportet",
       "description": "Modalità di lavoro per tutta la sessione, basata su ponytail: la soluzione più semplice che funziona, riuso di codice e API esistenti, costanti, niente duplicati, DefunctumEst. Include Vitium ostendere / -VO (bug corretti partendo da un test che fallisce). /nec-plus-quam-oportet o -NPQO [levis|ultra|off].",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "source": "./plugins/nec-plus-quam-oportet",
       "category": "development"
     },
@@ -110,7 +243,7 @@
     {
       "name": "summa-rerum",
       "description": "Elenca plugin e skill di questo marketplace, con cosa fanno e come si attivano e quali sono sempre attive: l'help del marketplace. /summa-rerum o -SR.",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "source": "./plugins/summa-rerum",
       "category": "productivity"
     },

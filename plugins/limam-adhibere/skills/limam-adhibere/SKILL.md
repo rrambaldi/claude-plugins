@@ -4,14 +4,15 @@ description: >-
   Pensiero critico e laterale su un'idea, un progetto o qualunque cosa: pregi, difetti,
   alternative, ipotesi, rischi e criteri per proseguire o abbandonare. Solo analisi: niente
   codice, file o piani. Attivala SEMPRE quando l'utente scrive "Limam adhibere" o "-LA" (analisi
-  completa), "Celeri lima adhibita" o "-CLA" (rapida: 5 pregi, 5 difetti, 5 miglioramenti, anche
-  laterali), "Advocatus diaboli" o "-AD" (solo contro: il caso più forte per non farlo): con o
-  senza slash, in qualunque combinazione di maiuscole, da soli o seguiti o preceduti dal testo.
+  completa), "Celeri lima adhibita" o "-CLA" (rapida: 5 pregi, 5 difetti, 5 miglioramenti, 5
+  pensieri laterali), "Advocatus diaboli" o "-AD" (solo contro: il caso più forte per non
+  farlo): con o senza slash, in qualunque combinazione di maiuscole, da soli o seguiti o preceduti
+  dal testo.
   Attivala anche quando l'utente chiede esplicitamente di analizzare o valutare criticamente
   un'idea, di trovarne pro e contro, di metterla alla prova o di fare l'avvocato del diavolo, per
   esempio "analizza questa idea", "questa idea sta in piedi?", "valuta criticamente questo
   progetto", "smontala". Non usarla per domande tecniche puntuali, né per scrivere piani d'azione
-  o codice.
+  o codice. Per un'analisi SWOT usa intus-et-extra.
 ---
 
 # Limam adhibere
@@ -25,7 +26,7 @@ decidere.
 | Comando | Sigla | Modalità |
 |---|---|---|
 | Limam adhibere | -LA | Analisi completa in tre blocchi |
-| Celeri lima adhibita | -CLA | 5 pregi, 5 difetti, 5 miglioramenti, in un turno |
+| Celeri lima adhibita | -CLA | 5 pregi, 5 difetti, 5 miglioramenti, 5 pensieri laterali, in un turno |
 | Advocatus diaboli | -AD | Solo contro: assunzioni nascoste, pre-mortem, obiezione più forte |
 
 Le sigle valgono quando compaiono come parola a sé (a inizio o fine messaggio, o da sole), non
@@ -51,7 +52,8 @@ da questa skill.
 
 Varianti:
 - **Rapida**: se l'utente scrive "Celeri lima adhibita" o "-CLA", o chiede comunque una versione
-  breve, fai un solo turno: 5 pregi, 5 difetti, 5 miglioramenti (sezione "Modalità rapida").
+  breve, fai un solo turno: 5 pregi, 5 difetti, 5 miglioramenti, 5 pensieri laterali (sezione
+  "Modalità rapida").
 - **Avvocato del diavolo**: se l'utente scrive "Advocatus diaboli" o "-AD", o chiede di smontare
   l'idea, fai un solo turno di soli contro (sezione "Advocatus diaboli").
 - **Tutto in un turno**: se l'utente lo chiede esplicitamente, esegui i tre blocchi di fila in
@@ -209,20 +211,27 @@ Chiudi con: *"Scrivi **prosegui** per il blocco C (ipotesi, rischi e decisione).
 ## Modalità rapida (Celeri lima adhibita, -CLA)
 
 Serve a stimolare il pensiero critico e laterale su qualunque cosa (un'idea, un progetto, un
-testo, un prompt, una decisione), non a decidere. Un solo turno, tre elenchi numerati e niente
-altro:
+testo, un prompt, una decisione), non a decidere. Un solo turno, quattro elenchi numerati e
+niente altro:
 
 1. **5 pregi** (P1-P5). Cosa regge davvero, e perché.
 2. **5 difetti** (D1-D5). Cosa non regge o è ancora da dimostrare; segna se è strutturale o
    risolvibile.
-3. **5 miglioramenti** (M1-M5). Ciascuno dice quale difetto risolve ("→ D2"), oppure propone
-   un'altra strada per lo stesso problema. Almeno due nascono dal pensiero laterale, e dicono da
-   quale mossa: *ribalta* un'assunzione (e se fosse il contrario?), *togli* un elemento che
-   sembra indispensabile, *esagera* un elemento fino all'estremo, *prendi in prestito* la
-   soluzione da un altro campo.
+3. **5 miglioramenti** (M1-M5). Ciascuno dice quale difetto risolve ("→ D2"). Ripara l'idea,
+   non la cambia.
+4. **5 pensieri laterali** (L1-L5). Non riparano un difetto: cambiano il modo di guardare il
+   problema e aprono un'altra strada. Uno per mossa, con la mossa in testa al punto:
+   - *ribalta* un'assunzione: e se fosse il contrario?
+   - *togli* un elemento che sembra indispensabile;
+   - *esagera* un elemento fino all'estremo;
+   - *prendi in prestito* la soluzione da un altro campo, e di' quale;
+   - *cambia chi*: un altro utente, un altro cliente, un altro che paga.
 
-Una riga per punto, due al massimo. Il 5 è voluto: spinge oltre i primi punti ovvi. Se però il
-quinto fosse riempitivo, scrivi che non ne trovi un altro che regga invece di inventarlo.
+   Può sembrare strano, ma dice cosa ci guadagna.
+
+Una riga per punto, due al massimo. Il 5 è voluto: spinge oltre i primi punti ovvi. Se però un
+punto fosse riempitivo (il quinto pregio, una mossa che qui non dà niente), scrivi che non ne
+trovi uno che regga invece di inventarlo.
 
 Niente cancello iniziale, blocchi, tabelle o etichette: se manca un'informazione, dichiara in una
 riga in cima l'assunzione fatta. Valgono i principi 1, 3 e 4.

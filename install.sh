@@ -1,23 +1,43 @@
 #!/usr/bin/env bash
 # Armamentarium in Claude Code: toglie ponytail e modalita-fastidio (plugin, skill, hook), aggiunge
-# il marketplace, installa omnia (tutte le skill, con i loro hook) a livello utente se l'organizzazione
-# non lo dà già da claude.ai, ne accende le skill in skillOverrides e accende l'aggiornamento
-# automatico del marketplace. Si può rilanciare quante volte vuoi. I livelli progetto e locale
-# valgono per la cartella da cui lo lanci.
-# Prima di cancellare i file rimasti chiede conferma; con -y li cancella senza chiedere.
+# il marketplace, installa il pacchetto con tutte le skill e i loro hook nella lingua scelta (omnia
+# latino, tutto italiano, all inglese) a livello utente se l'organizzazione non ne dà già uno da
+# claude.ai, ne accende le skill in skillOverrides e accende l'aggiornamento automatico del
+# marketplace. Si può rilanciare quante volte vuoi: con un'altra lingua cambia pacchetto. I livelli
+# progetto e locale valgono per la cartella da cui lo lanci.
+# Senza lingua la chiede (invio = latino). Prima di cancellare i file rimasti chiede conferma; con -y
+# li cancella senza chiedere e, se manca la lingua, usa il latino.
 #
 #   curl -fsSL https://raw.githubusercontent.com/rrambaldi/claude-plugins/main/install.sh | bash
-#   curl -fsSL https://raw.githubusercontent.com/rrambaldi/claude-plugins/main/install.sh | bash -s -- -y
+#   curl -fsSL https://raw.githubusercontent.com/rrambaldi/claude-plugins/main/install.sh | bash -s -- -y it
 set -euo pipefail
 
 SI=no
-[ "${1:-}" = -y ] && SI=si
+LINGUA=
+for a in "$@"; do
+  case "$a" in
+    -y) SI=si ;;
+    la|it|en) LINGUA=$a ;;
+    *) echo "Opzione sconosciuta: $a (usa -y e una lingua: la, it, en)" >&2; exit 1 ;;
+  esac
+done
+if [ -z "$LINGUA" ] && [ "$SI" = no ] && { : </dev/tty; } 2>/dev/null; then
+  read -r -p "Lingua dei comandi: latino (la), italiano (it), inglese (en)? [la] " LINGUA </dev/tty || LINGUA=
+fi
+case "${LINGUA:-la}" in
+  la) PACCHETTO=omnia; STATUSLINE="Status rei (-STR)" ;;
+  it) PACCHETTO=tutto; STATUSLINE="Barra di stato (-BDS)" ;;
+  en) PACCHETTO=all; STATUSLINE="Status line (-SL)" ;;
+  *) echo "Lingua sconosciuta: $LINGUA (la, it, en)" >&2; exit 1 ;;
+esac
+# Un pacchetto per lingua: installarne due fa comparire ogni skill due volte.
+PACCHETTI=(omnia tutto all)
 # Ogni settings modificato viene copiato in .bak una volta per giro, prima della prima modifica.
 export INIZIO=$(date +%s)
 
 MARKETPLACE=armamentarium
 REPO=rrambaldi/claude-plugins
-PLUGIN="omnia@$MARKETPLACE"
+PLUGIN="$PACCHETTO@$MARKETPLACE"
 DA_TOGLIERE='ponytail|fastidio'
 SETTINGS=("$HOME/.claude/settings.json" "$HOME/.claude/settings.local.json"
           "$PWD/.claude/settings.json" "$PWD/.claude/settings.local.json")
@@ -113,26 +133,31 @@ cl plugin marketplace add "$REPO" --scope user
 cl plugin marketplace update "$MARKETPLACE"
 
 echo "4/5 $PLUGIN (utente)"
-# Se l'organizzazione mette omnia su claude.ai come Required o Installed by default, Claude Code lo
-# sincronizza da solo: installato anche qui, ogni skill comparirebbe due volte.
+# Se l'organizzazione mette un pacchetto su claude.ai come Required o Installed by default, Claude
+# Code lo sincronizza da solo: installato anche qui, o in un'altra lingua, ogni skill comparirebbe
+# due volte. Allora vale quello, qualunque lingua tu abbia scelto.
 sincronizzato=no
-if command -v python3 >/dev/null && python3 - "$HOME/.claude/plugins/synced" <<'PY'
+if command -v python3 >/dev/null && sinc=$(python3 - "$HOME/.claude/plugins/synced" "${PACCHETTI[@]}" <<'PY'
 import glob, json, os, sys
 for f in glob.glob(os.path.join(sys.argv[1], "*", "manifest.json")):
     try:
         plugins = json.load(open(f)).get("plugins", [])
     except Exception:
         continue
-    if any(p.get("name") == "omnia" and p.get("installationPreference") in ("required", "auto_install")
-           for p in plugins):
-        sys.exit(0)
+    for p in plugins:
+        if p.get("name") in sys.argv[2:] and p.get("installationPreference") in ("required", "auto_install"):
+            print(p["name"])
+            sys.exit(0)
 sys.exit(1)
 PY
-then
+); then
   sincronizzato=si
+  [ "$sinc" = "$PACCHETTO" ] || echo "   l'organizzazione dà già $sinc (claude.ai): uso quello invece di $PACCHETTO"
+  PACCHETTO=$sinc
+  PLUGIN="$PACCHETTO@$MARKETPLACE"
 fi
-# Solo omnia e solo a livello utente: un plugin singolo, o omnia in un altro livello, fanno
-# comparire le skill due volte.
+# Un pacchetto solo e solo a livello utente: un plugin singolo, un altro pacchetto o lo stesso in un
+# altro livello fanno comparire le skill due volte.
 utente=no
 while read -r id scope; do
   if [ "$id" = "$PLUGIN" ] && [ "$scope" = user ] && [ "$sincronizzato" = no ]; then
@@ -142,7 +167,7 @@ while read -r id scope; do
   fi
 done < <(installati)
 if [ "$sincronizzato" = si ]; then
-  echo "   omnia arriva già dall'organizzazione (claude.ai): non lo installo anche qui"
+  echo "   $PACCHETTO arriva già dall'organizzazione (claude.ai): non lo installo anche qui"
 else
   if [ "$utente" = si ]; then
     cl plugin update "$PLUGIN" --scope user
@@ -151,14 +176,14 @@ else
   fi
   out=$(cl plugin enable "$PLUGIN" --scope user 2>&1) || grep -q "already enabled" <<<"$out" || { echo "$out" >&2; exit 1; }
 fi
-# Skill di omnia su "on" nei settings utente. Nei settings di progetto e locali un'eccezione per la
+# Skill del pacchetto su "on" nei settings utente. Nei settings di progetto e locali un'eccezione per la
 # stessa skill vincerebbe su quella utente: lì si tolgono quelle che la spengono.
 # Nei settings utente anche autoUpdate: per i marketplace non ufficiali parte spento.
 mapfile -t locali < <(esistenti "$HOME/.claude/settings.local.json" "$PWD/.claude/settings.json" "$PWD/.claude/settings.local.json")
 if command -v python3 >/dev/null; then
-  python3 - "$MARKETPLACE" "$HOME/.claude/plugins/marketplaces/$MARKETPLACE" "$HOME/.claude/settings.json" "${locali[@]}" <<'PY' || echo "   ⚠ skillOverrides e autoUpdate non aggiornati, vado avanti" >&2
+  python3 - "$MARKETPLACE" "$PACCHETTO" "$HOME/.claude/plugins/marketplaces/$MARKETPLACE" "$HOME/.claude/settings.json" "${locali[@]}" <<'PY' || echo "   ⚠ skillOverrides e autoUpdate non aggiornati, vado avanti" >&2
 import json, os, re, shutil, sys
-nome, radice, utente, *altri = sys.argv[1:]
+nome, pacchetto, radice, utente, *altri = sys.argv[1:]
 
 def salva(f, dati):
     if not os.path.exists(f + ".bak") or os.path.getmtime(f + ".bak") < float(os.environ["INIZIO"]):
@@ -167,13 +192,13 @@ def salva(f, dati):
         json.dump(dati, out, indent=2, ensure_ascii=False)
         out.write("\n")
 
-# L'elenco delle skill di omnia viene dal marketplace, così non va aggiornato qui.
+# L'elenco delle skill del pacchetto viene dal marketplace, così non va aggiornato qui.
 catalogo = json.load(open(os.path.join(radice, ".claude-plugin", "marketplace.json")))
-omnia = next(p for p in catalogo["plugins"] if p["name"] == "omnia")
+voce_pacchetto = next(p for p in catalogo["plugins"] if p["name"] == pacchetto)
 chiavi = set()
-for cartella in omnia["skills"]:
+for cartella in voce_pacchetto["skills"]:
     testo = open(os.path.join(radice, cartella, "SKILL.md")).read()
-    chiavi.add("omnia:" + re.search(r"^name:\s*(\S+)", testo, re.M).group(1))
+    chiavi.add(pacchetto + ":" + re.search(r"^name:\s*(\S+)", testo, re.M).group(1))
 
 dati = json.load(open(utente))
 cambiati = False
@@ -188,7 +213,7 @@ if voce is not None and voce.get("autoUpdate") is not True:
     cambiati = True
 if cambiati:
     salva(utente, dati)
-print(f"   skillOverrides: {len(chiavi)} skill di omnia su on in {utente}")
+print(f"   skillOverrides: {len(chiavi)} skill di {pacchetto} su on in {utente}")
 if voce is None:
     print(f"   ⚠ {nome} non è in {utente}: accendi l'aggiornamento da /plugin → Marketplaces", file=sys.stderr)
 else:
@@ -199,17 +224,17 @@ for f in dict.fromkeys(altri):
         continue
     dati = json.load(open(f))
     override = dati.get("skillOverrides") or {}
-    spente = [k for k, v in override.items() if v != "on" and (k in chiavi or "omnia:" + k in chiavi)]
+    spente = [k for k, v in override.items() if v != "on" and (k in chiavi or pacchetto + ":" + k in chiavi)]
     if spente:
         for k in spente:
             del override[k]
         if not override:
             del dati["skillOverrides"]
         salva(f, dati)
-        print(f"   tolte {len(spente)} eccezioni che spegnevano omnia da {f}")
+        print(f"   tolte {len(spente)} eccezioni che spegnevano {pacchetto} da {f}")
 PY
 else
-  echo "   ⚠ python3 non trovato: metti a mano le skill di omnia su \"on\" in skillOverrides e accendi l'aggiornamento da /plugin → Marketplaces" >&2
+  echo "   ⚠ python3 non trovato: metti a mano le skill di $PACCHETTO su \"on\" in skillOverrides e accendi l'aggiornamento da /plugin → Marketplaces" >&2
 fi
 
 echo "5/5 controllo finale"
@@ -244,7 +269,7 @@ if [ -n "$citano" ]; then
   echo "   ⚠ questi citano ancora ponytail o fastidio, controllali a mano:" >&2
   sed 's/^/     /' <<<"$citano" >&2
   if grep -qi statusline <<<"$citano"; then
-    echo "   Una statusline che li cita si può sostituire con Status rei (-STR)." >&2
+    echo "   Una statusline che li cita si può sostituire con $STATUSLINE." >&2
   fi
   echo "   Le skill che tornano dopo ogni avvio arrivano da claude.ai: toglile da Customize → Skills / Plugins." >&2
 elif [ ${#nominati[@]} -eq 0 ]; then

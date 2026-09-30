@@ -1,0 +1,27 @@
+{
+  "skill_name": "ux-audit",
+  "note": "Sostituire URL, percorso e persona con quelli delle app di prova. Eseguire ogni caso con la skill e senza skill (stesso prompt) e confrontare.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "gestionale-standard",
+      "prompt": "-UXA su <URL staging del gestionale>, repo in <percorso>. La usano impiegate amministrative che inseriscono fatture tutto il giorno. Account di test: <utente>/<password>.",
+      "expected_output": "Pausa dopo la ricognizione; poi report e piano in docs/ux con rilievi etichettati [M]/[V]/[C], registro delle prove, contrasto misurato, verdetto non compensabile, due direzioni, elenco Da non toccare.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "solo-estetica",
+      "prompt": "questa app funziona ma sembra datata e anonima, dimmi cosa cambieresti nell'aspetto: <URL>, codice in <percorso>",
+      "expected_output": "Analisi mirata sull'estetica: palette e tipografia reali estratte dal codice e dagli stili calcolati, cliché e identità motivati come [P], proposte con valori, nessun voto numerico.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "senza-browser",
+      "prompt": "-UXA rapida sul repo in <percorso>, non ho un ambiente online",
+      "expected_output": "Dichiara l'assenza di browser, analisi statica del codice, valori visivi marcati [S] o [?], verdetto al massimo Incompleto per le dimensioni non verificate, elenco di verifiche manuali.",
+      "files": []
+    }
+  ]
+}

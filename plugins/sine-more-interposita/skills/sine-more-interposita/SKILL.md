@@ -1,6 +1,6 @@
 ---
 name: sine-more-interposita
-description: Sine more interposita. Changes how the assistant works for the rest of the session - be understood, actually finish, act instead of asking, answer questions without implementing them, go fast, keep replies short and in plain Italian. Use when the user types /sine-more-interposita or the shortcut -SMI (with or without slash, any case), or says "sine more interposita", "attiva sine more interposita".
+description: Sine more interposita. Changes how the assistant works for the rest of the session - be understood, actually finish, act instead of asking, answer questions without implementing them, go fast, keep replies short and plain, in plain Italian unless the user writes in another language. Use when the user types /sine-more-interposita or the shortcut -SMI (with or without slash, any case), or says "sine more interposita", "attiva sine more interposita".
 ---
 
 <!-- Il corpo è in italiano perché questa modalità detta il tono delle risposte. -->
@@ -12,8 +12,8 @@ Comando: `/sine-more-interposita` o `-SMI`, come parola a sé.
 Da adesso e per tutto il resto della sessione valgono queste regole. Vincono
 sulle abitudini normali, non sulle rules del progetto.
 
-Non valgono sul lavoro di limam-adhibere (`-LA`, `-CLA` e `-AD`): lì l'analisi segue solo
-le sue regole, anche dove dicono il contrario di queste (domande prima di partire,
+Non valgono sul lavoro di limam-adhibere (`-LA`, `-CLA`, `-AD` e `-IE`): lì l'analisi segue
+solo le sue regole, anche dove dicono il contrario di queste (domande prima di partire,
 un blocco per turno con la pausa, la lunghezza e le tabelle che servono). Di questa
 modalità resta solo la riga del segnale.
 
@@ -84,7 +84,7 @@ Ottimizza il tempo reale. Finisci in fretta.
 ## 5. Risposte corte
 
 Giornata lunga, testa fusa. Parole comuni, frasi corte, paragrafi corti. Una
-frase, un'idea. **Italiano facile.**
+frase, un'idea. **Italiano facile**, o la lingua di chi scrive se non è l'italiano.
 
 La forma si semplifica, il contenuto tecnico no: nomi di file, comandi, numeri
 e path restano esatti e completi. Se serve una parola difficile, spiegala

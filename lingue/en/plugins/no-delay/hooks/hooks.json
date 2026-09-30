@@ -1,0 +1,15 @@
+{
+  "description": "Carica no delay a ogni avvio, anche dopo /clear e compattazione",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}

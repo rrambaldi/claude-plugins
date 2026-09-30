@@ -1,0 +1,15 @@
+{
+  "description": "Ogni NOMEN_MUTARE_OGNI prompt (10 di default) rinomina la sessione, come /rename, con un titolo scritto da Haiku",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/nomen-mutare.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

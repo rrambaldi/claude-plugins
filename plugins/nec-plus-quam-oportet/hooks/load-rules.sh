@@ -20,12 +20,14 @@ print(json.dumps({"hookSpecificOutput": {"hookEventName": "SubagentStart", "addi
     ;;
   prompt)
     # Conta solo se il messaggio comincia con il comando: citarlo a metà frase non cambia niente.
+    # Sigla e nomi scritti come nella skill: lingue/genera.py li traduce per gli altri set.
     new=$(python3 -c 'import json, re, sys
-p = json.load(sys.stdin).get("prompt", "").strip().lower()
-m = re.match(r"/?-?(npqo|nec-plus-quam-oportet)\b(\s+(lite|levis|full|ultra|off)\b)?", p)
+p = json.load(sys.stdin).get("prompt", "").strip()
+m = re.match(r"/?(-NPQO|nec-plus-quam-oportet|nec plus quam oportet)\b(\s+(lite|levis|full|ultra|off)\b)?", p, re.I)
 if m:
-    print({"levis": "lite"}.get(m.group(3), m.group(3) or "full"))
-elif re.match(r"(stop nec plus|normal mode)\b", p):
+    livello = (m.group(3) or "full").lower()
+    print({"levis": "lite"}.get(livello, livello))
+elif re.match(r"(stop nec plus|normal mode)\b", p, re.I):
     print("off")')
     [ -z "$new" ] || echo "$new" > "$FLAG"
     ;;
