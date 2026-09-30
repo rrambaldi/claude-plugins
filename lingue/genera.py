@@ -63,6 +63,19 @@ ALTRE = [
     ("levis", "leggero", "lite"),
 ]
 
+# La guida ai comandi cambia anche pacchetto, lingua dell'installer e link al README.
+GUIDA = "plugins/COMANDI.md"
+SOLO_GUIDA = [
+    ("Scritta a mano: le guide del set italiano e di quello inglese le ricava lingue/genera.py.",
+     "Generata da lingue/genera.py a partire da plugins/COMANDI.md: non modificarla a mano.",
+     "Generata da lingue/genera.py a partire da plugins/COMANDI.md: non modificarla a mano."),
+    ("# Comandi in latino", "# Comandi in italiano", "# Comandi in inglese"),
+    ("Pacchetto `omnia`", "Pacchetto `tutto`", "Pacchetto `all`"),
+    ("omnia@armamentarium", "tutto@armamentarium", "all@armamentarium"),
+    ("bash -s -- la", "bash -s -- it", "bash -s -- en"),
+    ("](../README.md)", "](../../../README.md)", "](../../../README.md)"),
+]
+
 PACCHETTI = {
     "it": ("tutto", "Tutto l'armamentarium con i comandi in italiano: tutte le skill di tutti i "
                     "plugin, con i loro hook. Non installarlo insieme a omnia o all."),
@@ -128,6 +141,10 @@ def genera(lingua, indice, sorgenti):
         destinazione = base / traduci(f)
         destinazione.parent.mkdir(parents=True, exist_ok=True)
         testo = traduci(origine.read_text(encoding="utf-8"), python=origine.suffix == ".py")
+        if f == GUIDA:
+            for riga in SOLO_GUIDA:
+                assert riga[0] in testo, f"{GUIDA}: manca «{riga[0]}»"
+                testo = testo.replace(riga[0], riga[indice])
         destinazione.write_text(testo, encoding="utf-8")
         shutil.copymode(origine, destinazione)
         if destinazione.name == "SKILL.md" and len(descrizione(testo)) > LIMITE_DESCRIZIONE:
