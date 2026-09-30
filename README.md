@@ -63,6 +63,7 @@ skill compare due volte.
 /plugin install nec-plus-quam-oportet@armamentarium
 /plugin install festina-lente@armamentarium
 /plugin install nomen-mutare@armamentarium
+/plugin install cave-canem@armamentarium
 /plugin install tabula-rasa@armamentarium
 /plugin install status-rei@armamentarium
 /plugin install summa-rerum@armamentarium
@@ -102,10 +103,13 @@ comandi".
 - *Inspectio decoris* (`-ID`): analisi UX ed estetica di un'app web esistente, con prove dal browser e dal codice. Non tocca il codice.
 - *Sequere pulchritudinem* (`-SP`): applica un restyle già approvato, fase per fase, e lo verifica nel browser.
 
-### Sviluppo (nec-plus-quam-oportet, vitium-ostendere)
+### Sviluppo (nec-plus-quam-oportet, vitium-ostendere, nemo-iudex-in-causa-sua, lex-scripta, cave-canem)
 
 - *Nec plus quam oportet* (`-NPQO`), sempre attiva: per la scrittura di codice. La soluzione più semplice che funziona, basata su ponytail (MIT).
 - *Vitium ostendere* (`-VO`): corregge un bug partendo da un test che fallisce.
+- *Nemo iudex in causa sua* (`-NIICS`): il diff lo rivede un subagente che non l'ha scritto. Parte anche da sola sui diff grandi o delicati.
+- *Lex scripta* (`-LS`): scrive le regole per il codice, in breve, nel CLAUDE.md del progetto.
+- *Cave canem*, sempre attivo, senza sigla: prima di un `git commit` lanciato da Claude lo ferma se ci trova segreti o file che non sono del task.
 
 ### Piani lunghi senza di te (festina-lente, alea-iacta-est)
 
@@ -148,12 +152,14 @@ skill restano in italiano, e Claude risponde nella tua lingua.
 | *Advocatus diaboli* (`-AD`) | *Avvocato del diavolo* (`-AD`) | *Devil's advocate* (`-DA`) |
 | *Nec plus quam oportet* (`-NPQO`) levis, ultra, off | *Solo il necessario* (`-SN`) leggero, ultra, off | *Keep it simple* (`-KIS`) lite, ultra, off |
 | *Vitium ostendere* (`-VO`) | *Prima il test* (`-PT`) | *Test first* (`-TF`) |
+| *Nemo iudex in causa sua* (`-NIICS`) | *Occhi nuovi* (`-ON`) | *Fresh eyes* (`-FE`) |
+| *Lex scripta* (`-LS`) | *Regole scritte* (`-RS`) | *House rules* (`-HR`) |
 | *Sine more interposita* (`-SMI`) | *Niente indugi* (`-NI`) | *No delay* (`-ND`) |
 | *Status rei* (`-STR`) | *Barra di stato* (`-BDS`) | *Status line* (`-SL`) |
 | *Summa rerum* (`-SR`) | *Grimorio* (`-GR`) | *Spellbook* (`-SB`) |
 | *Tabula rasa* (`-TR`) | *Fai pulizia* (`-FP`) | *Clean slate* (`-CS`) |
 
-nomen-mutare non ha comandi ed è uguale nei tre set. I badge della statusline restano in latino.
+nomen-mutare e cave-canem non hanno comandi e sono uguali nei tre set. I badge della statusline restano in latino.
 
 Il set latino in `plugins/` è l'unico che si scrive a mano. `python3 lingue/genera.py` ne ricava
 `lingue/it` e `lingue/en`, cambiando nomi e sigle, e i pacchetti `tutto` e `all` in
@@ -173,10 +179,16 @@ Il set latino in `plugins/` è l'unico che si scrive a mano. `python3 lingue/gen
 - L'app funziona ma sembra datata, o non sai perché una pagina non convince: *Inspectio decoris* (`-ID`) seguito da URL o cartella. Livelli: `-ID rapida`, `-ID` (standard), `-ID completa`. Quattro turni (ricognizione, percorso, misure, sintesi): scrivi `prosegui` per passare al successivo, e il report si aggiorna nel file a ogni turno. Senza un browser MCP propone un Chromium headless, se sei d'accordo a scaricarlo. Non tocca il codice; il piano di interventi finisce in `docs/ux/piano-restyle.md`.
 - Hai approvato il piano e vuoi applicarlo: *Sequere pulchritudinem* (`-SP`), per esempio `-SP applica la fase 1`. Ogni intervento viene verificato nel browser con le stesse misure dell'analisi.
 
-### nec-plus-quam-oportet e vitium-ostendere
+### nec-plus-quam-oportet, vitium-ostendere, nemo-iudex-in-causa-sua e lex-scripta
 
 - Sempre attiva: quando chiedi del codice, Claude riusa quello che c'è già e scrive il minimo che funziona. *Nec plus quam oportet* (`-NPQO`): `-NPQO levis` per allentare, `-NPQO ultra` per stringere, `-NPQO off` per spegnerla.
 - C'è un bug e vuoi la certezza che non torni: *Vitium ostendere* (`-VO`) seguito dalla descrizione. Prima un test che lo riproduce e fallisce, poi la correzione minima, poi lo stesso test verde.
+- Vuoi una revisione che non sia Claude che rilegge il suo lavoro: *Nemo iudex in causa sua* (`-NIICS`), da solo per le modifiche non committate o seguito da un commit, un intervallo (`HEAD~3..`) o una PR. Un subagente riceve solo il task e il diff, senza la conversazione, e cerca cosa manca, cosa è di troppo, cosa si rompe. Claude verifica ogni rilievo, corregge quelli veri e ti dice perché ha scartato gli altri. Parte anche da sola prima di chiudere un diff sopra le 50 righe o i 3 file, o che tocca soldi, dati o sicurezza.
+- Vuoi che le regole valgano per tutto il team, anche per chi non ha il plugin: *Lex scripta* (`-LS`). Scrive in fondo al CLAUDE.md del progetto un blocco di una ventina di righe (precedenza, riuso, niente duplicati, errori, test, revisione indipendente, commit puliti), ti mostra il diff e non committa. Rilanciato, aggiorna solo il blocco: le regole del progetto stanno fuori e restano. Tono delle risposte e file temporanei restano fuori, perché sono gusti tuoi. Il blocco è una regola del progetto: `-NPQO levis`, `ultra` e `off` non lo toccano. Al livello di default, con il blocco, all'avvio *Nec plus quam oportet* non ricarica le sue 11 KB: bastano le regole corte, e la skill si carica quando serve.
+
+### cave-canem
+
+- Sempre attivo: prima di ogni `git commit` lanciato da Claude, un hook guarda cosa finirebbe nel commit. Lo ferma se trova segreti (chiavi AWS, GitHub, Anthropic, OpenAI, Slack, Google, Stripe, chiavi private, password in chiaro, file `.env`) o file cambiati prima che la sessione cominciasse, che quindi non sono del task: per esempio il tuo lavoro in corso finito dentro un `git add -A`. Dice file, riga e tipo del segreto, mai il valore. Se il file vecchio va committato davvero, Claude rilancia con `CAVE_CANEM=perimetro`. Per un falso allarme sui segreti rilancia con `CAVE_CANEM=segreti`, e decidi tu: ti arriva una richiesta di permesso con l'elenco. I commit che fai tu a mano non li tocca.
 
 ### sine-more-interposita
 

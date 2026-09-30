@@ -1,0 +1,16 @@
+{
+  "description": "Prima di ogni git commit lanciato da Claude cerca segreti e file fuori dal task, e se li trova ferma il commit",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/cave-canem.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -37,6 +37,16 @@ elif re.match(r"(stop keep it simple|normal mode)\b", p, re.I):
     [ "$source" = startup ] && mode=full
     echo "$mode" > "$FLAG"
     [ "$mode" = off ] && exit
+    # Con il blocco di house-rules nel CLAUDE.md del progetto, al livello full le regole corte
+    # bastano: le complete restano nella skill, e i subagent le ricevono comunque. Lo script lo
+    # scrive nella radice git, anche in .claude/.
+    dir=${CLAUDE_PROJECT_DIR:-$PWD}
+    root=$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null || echo "$dir")
+    if [ "$mode" = full ] && grep -qsF '<!-- armamentarium:inizio' \
+        "$dir/CLAUDE.md" "$dir/.claude/CLAUDE.md" "$root/CLAUDE.md" "$root/.claude/CLAUDE.md"; then
+      echo "KEEP IT SIMPLE ATTIVA — livello $mode — regole corte nel CLAUDE.md del progetto; quelle complete sono nella skill keep-it-simple: caricala quando scrivi codice."
+      exit
+    fi
     echo "KEEP IT SIMPLE ATTIVA — livello $mode — regole caricate all'avvio:"
     cat "$RULES"
     ;;

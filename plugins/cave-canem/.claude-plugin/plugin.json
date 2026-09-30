@@ -1,0 +1,8 @@
+{
+  "name": "cave-canem",
+  "version": "1.0.0",
+  "description": "Prima di ogni git commit lanciato da Claude guarda cosa ci finirebbe e lo ferma se trova segreti (chiavi, token, password in chiaro, .env, chiavi private) o file cambiati prima della sessione, cioè non del task. CAVE_CANEM=perimetro davanti a git commit salta il controllo sui file; con CAVE_CANEM=segreti decide l'utente, da una richiesta di permesso.",
+  "author": {
+    "name": "rrambaldi"
+  }
+}

@@ -30,6 +30,8 @@ COMANDI = [
     (("Advocatus diaboli", "AD"), ("Avvocato del diavolo", "AD"), ("Devil's advocate", "DA")),
     (("Nec plus quam oportet", "NPQO"), ("Solo il necessario", "SN"), ("Keep it simple", "KIS")),
     (("Vitium ostendere", "VO"), ("Prima il test", "PT"), ("Test first", "TF")),
+    (("Nemo iudex in causa sua", "NIICS"), ("Occhi nuovi", "ON"), ("Fresh eyes", "FE")),
+    (("Lex scripta", "LS"), ("Regole scritte", "RS"), ("House rules", "HR")),
     (("Sine more interposita", "SMI"), ("Niente indugi", "NI"), ("No delay", "ND")),
     (("Status rei", "STR"), ("Barra di stato", "BDS"), ("Status line", "SL")),
     (("Summa rerum", "SR"), ("Grimorio", "GR"), ("Spellbook", "SB")),
@@ -37,7 +39,7 @@ COMANDI = [
 ]
 
 # Nome della skill, che è anche il comando slash e la cartella: latino, italiano, inglese.
-# Un plugin che ha il nome di una sua skill cambia cartella con lei; nomen-mutare resta com'è.
+# Un plugin che ha il nome di una sua skill cambia cartella con lei; nomen-mutare e cave-canem restano come sono.
 SKILL = [
     ("alea-iacta-est", "il-dado-e-tratto", "the-die-is-cast"),
     ("festina-lente", "chi-va-piano", "make-haste-slowly"),
@@ -47,6 +49,8 @@ SKILL = [
     ("limam-adhibere", "analisi-critica", "critical-review"),
     ("nec-plus-quam-oportet", "solo-il-necessario", "keep-it-simple"),
     ("vitium-ostendere", "prima-il-test", "test-first"),
+    ("nemo-iudex-in-causa-sua", "occhi-nuovi", "fresh-eyes"),
+    ("lex-scripta", "regole-scritte", "house-rules"),
     ("sine-more-interposita", "niente-indugi", "no-delay"),
     ("status-rei", "barra-di-stato", "status-line"),
     ("summa-rerum", "grimorio", "spellbook"),

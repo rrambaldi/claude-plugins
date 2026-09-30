@@ -1,7 +1,7 @@
 {
   "name": "nec-plus-quam-oportet",
-  "version": "1.3.0",
-  "description": "Modalità di lavoro per tutta la sessione, basata su ponytail: la soluzione più semplice che funziona, riuso di codice e API esistenti, costanti invece di stringhe ripetute, niente duplicati, errori mai ingoiati, DefunctumEst. Include Vitium ostendere (-VO): bug corretti partendo da un test che fallisce. /nec-plus-quam-oportet o -NPQO [levis|ultra|off].",
+  "version": "1.4.0",
+  "description": "Modalità di lavoro per tutta la sessione, basata su ponytail: la soluzione più semplice che funziona, riuso di codice e API esistenti, costanti invece di stringhe ripetute, niente duplicati, errori mai ingoiati, DefunctumEst. Include Vitium ostendere (-VO): bug corretti partendo da un test che fallisce, Nemo iudex in causa sua (-NIICS): il diff rivisto da un subagente che non l'ha scritto; Lex scripta (-LS): le regole corte nel CLAUDE.md del progetto. /nec-plus-quam-oportet o -NPQO [levis|ultra|off].",
   "author": {
     "name": "rrambaldi"
   },

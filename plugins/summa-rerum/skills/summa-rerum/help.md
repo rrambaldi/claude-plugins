@@ -1,12 +1,15 @@
 | Plugin | Skill | Cosa fa | Come si attiva | Sempre attiva |
 |---|---|---|---|---|
+| cave-canem | (solo hook) | Prima di un `git commit` lanciato da Claude lo ferma se ci trova segreti (chiavi, token, password in chiaro, `.env`, chiavi private) o file cambiati prima della sessione, cioè non del task | Da solo. `CAVE_CANEM=perimetro` davanti a `git commit` salta il controllo sui file; con `CAVE_CANEM=segreti` decidi tu, da una richiesta di permesso | sì |
 | festina-lente | alea-iacta-est | Esegue un piano lungo senza fermarsi: sulle decisioni costose sceglie tra tre opzioni e registra la scelta | `Alea iacta est` / `-AIE` | |
 | festina-lente | festina-lente | Esegue un piano lungo senza decidere al posto tuo: i dubbi costosi si fermano e finiscono in un file da controllare | `Festina lente` / `-FL` | |
 | inspectio-decoris | inspectio-decoris | Analisi UX ed estetica di un'app web esistente, in quattro turni, con prove dal browser (anche headless) e dal codice | `Inspectio decoris` / `-ID` | |
 | inspectio-decoris | sequere-pulchritudinem | Applica un restyle già approvato, fase per fase, e lo verifica nel browser | `Sequere pulchritudinem` / `-SP` | |
 | limam-adhibere | intus-et-extra | Analisi SWOT: forze e debolezze, opportunità e minacce, poi gli incroci che dicono cosa farne | `Intus et extra` / `-IE` | |
 | limam-adhibere | limam-adhibere | Pensiero critico su un'idea: niente codice né piani | `Limam adhibere` / `-LA` (completa) · `Celeri lima adhibita` / `-CLA` (rapida: 5 pregi, 5 difetti, 5 miglioramenti, 5 pensieri laterali) · `Advocatus diaboli` / `-AD` (solo contro) | |
+| nec-plus-quam-oportet | lex-scripta | Scrive o aggiorna nel CLAUDE.md del progetto un blocco corto con le regole per il codice, per chiunque usi Claude su quel repo; mostra il diff e non committa. Con il blocco, all'avvio *Nec plus quam oportet* (livello di default) non ricarica le regole complete | `Lex scripta` / `-LS` | |
 | nec-plus-quam-oportet | nec-plus-quam-oportet | La soluzione più semplice che funziona: riuso, costanti, niente duplicati, marcatori `ParceEtRecte:` e `DefunctumEst:` | `Nec plus quam oportet` / `-NPQO` · `-NPQO levis` · `-NPQO ultra` · `-NPQO off` / `stop nec plus` | sì |
+| nec-plus-quam-oportet | nemo-iudex-in-causa-sua | Fa rivedere il diff da un subagente che non l'ha scritto, con solo il task e il diff; parte da sola prima di chiudere un diff sopra le 50 righe o i 3 file, o che tocca soldi, dati o sicurezza | `Nemo iudex in causa sua` / `-NIICS` · `-NIICS` seguito da un commit, un intervallo o una PR | |
 | nec-plus-quam-oportet | vitium-ostendere | Corregge un bug partendo da un test che fallisce: da rosso a verde | `Vitium ostendere` / `-VO` | |
 | nomen-mutare | (solo hook) | Ogni 10 prompt dà alla sessione un titolo nuovo, come `/rename`, scritto da Haiku sugli ultimi prompt | Da sola. Ogni quanti prompt: `NOMEN_MUTARE_OGNI` in `env` dei settings; `0` la spegne | sì |
 | sine-more-interposita | sine-more-interposita | Finire davvero, agire invece di chiedere, andare veloce, risposte corte in italiano facile; non tocca il lavoro di `-LA` / `-CLA` / `-AD` / `-IE` | `Sine more interposita` / `-SMI` | sì |

@@ -93,7 +93,7 @@ every sibling caller still broken. Fix it once, where all callers route through.
 - Two stdlib options, same size? Take the one that's correct on edge cases. Lazy means writing less code, not picking the flimsier algorithm.
 - Mark deliberate simplifications that cut a real corner with a known ceiling (global lock, O(n²) scan, naive heuristic) with a `ParceEtRecte:` comment naming the ceiling and upgrade path (`# ParceEtRecte: global lock, per-account locks if throughput matters`).
 - Comments say why, not what. No comment that restates the code; one that explains a non-obvious choice stays. The `ParceEtRecte:` and `DefunctumEst:` markers always stay.
-- Before calling it done, reread the diff once against these rules: only what was asked, nothing duplicated, no magic literals, no hardcoded environment values, no swallowed errors, no leftovers. Fix what you find. It's a silent self-check, not a report.
+- Before calling it done, reread the diff once against these rules: only what was asked, nothing duplicated, no magic literals, no hardcoded environment values, no swallowed errors, no leftovers. Fix what you find. It's a silent self-check, not a report. A code diff over 50 lines or 3 files, or one that touches money, data or security, also gets a review from a subagent that didn't write it: `fresh-eyes`.
 
 ## Output
 
