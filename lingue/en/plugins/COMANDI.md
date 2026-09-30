@@ -40,6 +40,13 @@ Qui si pensa e basta: niente codice né piani.
 - *Devil's advocate* (`-DA`): ti sembra già una buona idea e vuoi che qualcuno provi a smontarla.
   Solo contro: assunzioni nascoste, pre-mortem ("è passato un anno ed è fallito: perché?"),
   l'obiezione più forte. Se rispondi, ti dice se la tua difesa regge.
+- *Critical review* (`-CR`) e *Quick critique* (`-QC`) hanno anche un incantesimo in lingue
+  più antiche o più lontane. In sanscrito *Parīkṣāṃ kuru* (`-PK`) e *Śīghraṃ parīkṣāṃ kuru*
+  (`-SPK`), anche in devanagari o senza diacritici (`pariksham kuru`). In quenya, l'elfico di
+  Tolkien, *Sanwe-kenta* (`-SK`) e *Linta sanwe-kenta* (`-LSK`). In klingon *qech yIpoj*
+  (`-QP`) e *nom qech yIpoj* (`-NQP`). In gallese, la lingua di Merlino, *Profa'r syniad*
+  (`-PS`) e *Profa'r syniad yn gyflym* (`-PSG`). Stessa analisi, e restano uguali in tutti i
+  set.
 - *SWOT analysis* (`-SWOT`): analisi SWOT di un progetto, un prodotto o una decisione, meglio se
   con l'obiettivo. Forze e debolezze (dentro), opportunità e minacce (fuori), poi gli incroci
   (forza + opportunità, debolezza + minaccia...) e la cosa che pesa di più.

@@ -12,7 +12,8 @@ Comando: `/sine-more-interposita` o `-SMI`, come parola a sé.
 Da adesso e per tutto il resto della sessione valgono queste regole. Vincono
 sulle abitudini normali, non sulle rules del progetto.
 
-Non valgono sul lavoro di limam-adhibere (`-LA`, `-CLA`, `-AD` e `-IE`): lì l'analisi segue
+Non valgono sul lavoro di limam-adhibere (`-LA`, `-CLA`, `-AD` e `-IE`, anche con i loro
+incantesimi in sanscrito, quenya, klingon e gallese): lì l'analisi segue
 solo le sue regole, anche dove dicono il contrario di queste (domande prima di partire,
 un blocco per turno con la pausa, la lunghezza e le tabelle che servono). Di questa
 modalità resta solo la riga del segnale.

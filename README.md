@@ -93,7 +93,9 @@ Non installarli insieme a un pacchetto (`omnia`, `tutto` o `all`), o ogni skill 
 
 Il set latino in `plugins/` è l'unico che si scrive a mano. `python3 lingue/genera.py` ne ricava
 `lingue/it` e `lingue/en`, cambiando nomi e sigle, e i pacchetti `tutto` e `all` in
-`marketplace.json`, copiati da `omnia` con la sua versione.
+`marketplace.json`, copiati da `omnia` con la sua versione. Scrive anche, dentro `plugins/`, le copie
+di `limam-adhibere` con i comandi in sanscrito, quenya, klingon e gallese: si cambiano dal corpo di
+`limam-adhibere` o da `lingue/arcane/`, non a mano.
 
 1. Crea `plugins/<nome>/.claude-plugin/plugin.json` e `plugins/<nome>/skills/<nome>/SKILL.md`.
 2. Aggiungi la voce in `.claude-plugin/marketplace.json`, e aggiungi le sue skill (e gli hook, se

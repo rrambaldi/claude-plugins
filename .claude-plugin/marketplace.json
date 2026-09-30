@@ -10,7 +10,7 @@
     {
       "name": "omnia",
       "description": "Tutto l'armamentarium con i comandi in latino: tutte le skill di tutti i plugin, con i loro hook. Non installarlo insieme a tutto o all.",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "source": "./",
       "strict": false,
       "skills": [
@@ -20,6 +20,10 @@
         "./plugins/inspectio-decoris/skills/sequere-pulchritudinem",
         "./plugins/limam-adhibere/skills/intus-et-extra",
         "./plugins/limam-adhibere/skills/limam-adhibere",
+        "./plugins/limam-adhibere/skills/pariksam-kuru",
+        "./plugins/limam-adhibere/skills/profar-syniad",
+        "./plugins/limam-adhibere/skills/qech-yipoj",
+        "./plugins/limam-adhibere/skills/sanwe-kenta",
         "./plugins/nec-plus-quam-oportet/skills/lex-scripta",
         "./plugins/nec-plus-quam-oportet/skills/nec-plus-quam-oportet",
         "./plugins/nec-plus-quam-oportet/skills/nemo-iudex-in-causa-sua",
@@ -89,7 +93,7 @@
     {
       "name": "tutto",
       "description": "Tutto l'armamentarium con i comandi in italiano: tutte le skill di tutti i plugin, con i loro hook. Non installarlo insieme a omnia o all.",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "source": "./",
       "strict": false,
       "skills": [
@@ -99,6 +103,10 @@
         "./lingue/it/plugins/analisi-ux/skills/applica-restyle",
         "./lingue/it/plugins/analisi-critica/skills/analisi-swot",
         "./lingue/it/plugins/analisi-critica/skills/analisi-critica",
+        "./lingue/it/plugins/analisi-critica/skills/pariksam-kuru",
+        "./lingue/it/plugins/analisi-critica/skills/profar-syniad",
+        "./lingue/it/plugins/analisi-critica/skills/qech-yipoj",
+        "./lingue/it/plugins/analisi-critica/skills/sanwe-kenta",
         "./lingue/it/plugins/solo-il-necessario/skills/regole-scritte",
         "./lingue/it/plugins/solo-il-necessario/skills/solo-il-necessario",
         "./lingue/it/plugins/solo-il-necessario/skills/occhi-nuovi",
@@ -168,7 +176,7 @@
     {
       "name": "all",
       "description": "The whole armamentarium with English command names (instructions stay in Italian): every skill of every plugin, with its hooks. Don't install it together with omnia or tutto.",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "source": "./",
       "strict": false,
       "skills": [
@@ -178,6 +186,10 @@
         "./lingue/en/plugins/ux-audit/skills/apply-restyle",
         "./lingue/en/plugins/critical-review/skills/swot-analysis",
         "./lingue/en/plugins/critical-review/skills/critical-review",
+        "./lingue/en/plugins/critical-review/skills/pariksam-kuru",
+        "./lingue/en/plugins/critical-review/skills/profar-syniad",
+        "./lingue/en/plugins/critical-review/skills/qech-yipoj",
+        "./lingue/en/plugins/critical-review/skills/sanwe-kenta",
         "./lingue/en/plugins/keep-it-simple/skills/house-rules",
         "./lingue/en/plugins/keep-it-simple/skills/keep-it-simple",
         "./lingue/en/plugins/keep-it-simple/skills/fresh-eyes",
@@ -246,8 +258,8 @@
     },
     {
       "name": "limam-adhibere",
-      "description": "Pensiero critico su un'idea, niente codice né piani. Limam adhibere / -LA completa, Celeri lima adhibita / -CLA rapida, Advocatus diaboli / -AD solo contro, Intus et extra / -IE analisi SWOT.",
-      "version": "1.3.0",
+      "description": "Pensiero critico su un'idea, niente codice né piani. Limam adhibere / -LA completa, Celeri lima adhibita / -CLA rapida, Advocatus diaboli / -AD solo contro, Intus et extra / -IE analisi SWOT. -LA e -CLA anche in sanscrito (-PK, -SPK), quenya (-SK, -LSK), klingon (-QP, -NQP) e gallese (-PS, -PSG).",
+      "version": "1.4.0",
       "source": "./plugins/limam-adhibere",
       "category": "productivity"
     },
@@ -261,7 +273,7 @@
     {
       "name": "sine-more-interposita",
       "description": "Modalità di lavoro per tutta la sessione: finire davvero, agire invece di chiedere, andare veloce, risposte corte. /sine-more-interposita o -SMI.",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "source": "./plugins/sine-more-interposita",
       "category": "productivity"
     },
@@ -282,7 +294,7 @@
     {
       "name": "summa-rerum",
       "description": "Elenca plugin e skill di questo marketplace, con cosa fanno e come si attivano e quali sono sempre attive: l'help del marketplace. /summa-rerum o -SR.",
-      "version": "1.2.3",
+      "version": "1.2.4",
       "source": "./plugins/summa-rerum",
       "category": "productivity"
     },

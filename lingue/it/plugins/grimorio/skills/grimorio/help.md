@@ -7,12 +7,16 @@
 | analisi-ux | applica-restyle | Applica un restyle già approvato, fase per fase, e lo verifica nel browser | `Applica restyle` / `-AR` | |
 | analisi-critica | analisi-swot | Analisi SWOT: forze e debolezze, opportunità e minacce, poi gli incroci che dicono cosa farne | `Analisi SWOT` / `-SWOT` | |
 | analisi-critica | analisi-critica | Pensiero critico su un'idea: niente codice né piani | `Analisi critica` / `-AC` (completa) · `Critica veloce` / `-CV` (rapida: 5 pregi, 5 difetti, 5 miglioramenti, 5 pensieri laterali) · `Avvocato del diavolo` / `-AD` (solo contro) | |
+| analisi-critica | pariksam-kuru | *Analisi critica* con l'incantesimo in sanscrito | `Parīkṣāṃ kuru` / `-PK` (completa) · `Śīghraṃ parīkṣāṃ kuru` / `-SPK` (rapida) | |
+| analisi-critica | profar-syniad | *Analisi critica* con l'incantesimo in gallese, la lingua di Merlino | `Profa'r syniad` / `-PS` (completa) · `Profa'r syniad yn gyflym` / `-PSG` (rapida) | |
+| analisi-critica | qech-yipoj | *Analisi critica* con l'incantesimo in klingon | `qech yIpoj` / `-QP` (completa) · `nom qech yIpoj` / `-NQP` (rapida) | |
+| analisi-critica | sanwe-kenta | *Analisi critica* con l'incantesimo in quenya, l'elfico di Tolkien | `Sanwe-kenta` / `-SK` (completa) · `Linta sanwe-kenta` / `-LSK` (rapida) | |
 | solo-il-necessario | regole-scritte | Scrive o aggiorna nel CLAUDE.md del progetto un blocco corto con le regole per il codice, per chiunque usi Claude su quel repo; mostra il diff e non committa. Con il blocco, all'avvio *Solo il necessario* (livello di default) non ricarica le regole complete | `Regole scritte` / `-RS` | |
 | solo-il-necessario | solo-il-necessario | La soluzione più semplice che funziona: riuso, costanti, niente duplicati, marcatori `ParceEtRecte:` e `DefunctumEst:` | `Solo il necessario` / `-SN` · `-SN leggero` · `-SN ultra` · `-SN off` / `stop solo il necessario` | sì |
 | solo-il-necessario | occhi-nuovi | Fa rivedere il diff da un subagente che non l'ha scritto, con solo il task e il diff; parte da sola prima di chiudere un diff sopra le 50 righe o i 3 file, o che tocca soldi, dati o sicurezza | `Occhi nuovi` / `-ON` · `-ON` seguito da un commit, un intervallo o una PR | |
 | solo-il-necessario | prima-il-test | Corregge un bug partendo da un test che fallisce: da rosso a verde | `Prima il test` / `-PT` | |
 | nomen-mutare | (solo hook) | Ogni 10 prompt dà alla sessione un titolo nuovo, come `/rename`, scritto da Haiku sugli ultimi prompt | Da sola. Ogni quanti prompt: `NOMEN_MUTARE_OGNI` in `env` dei settings; `0` la spegne | sì |
-| niente-indugi | niente-indugi | Finire davvero, agire invece di chiedere, andare veloce, risposte corte in italiano facile; non tocca il lavoro di `-AC` / `-CV` / `-AD` / `-SWOT` | `Niente indugi` / `-NI` | sì |
+| niente-indugi | niente-indugi | Finire davvero, agire invece di chiedere, andare veloce, risposte corte in italiano facile; non tocca il lavoro di `-AC` / `-CV` / `-AD` / `-SWOT`, neanche con i loro incantesimi in altre lingue | `Niente indugi` / `-NI` | sì |
 | barra-di-stato | barra-di-stato | Statusline con modello, effort, branch, contesto, quanto resta dei limiti di 5 ore e settimanale e badge delle modalità | `Barra di stato` / `-BDS` (attiva) · `-BDS off` (disattiva) | |
 | grimorio | grimorio | L'help del marketplace: questa tabella | `Grimorio` / `-GR` | |
 | fai-pulizia | (hook) | Igiene dei file temporanei: Claude cancella quelli che crea, ferma i processi in background e chiude ogni task con lo scratchpad vuoto; dopo commit o push chiede `/compact` | Da sola | sì |

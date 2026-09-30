@@ -3,7 +3,8 @@
 
 Cambiano solo incantesimi, sigle e nomi delle skill: le istruzioni restano in italiano.
 Riscrive da zero lingue/it e lingue/en e, in .claude-plugin/marketplace.json, i pacchetti
-tutto e all, copiati da omnia (versione compresa).
+tutto e all, copiati da omnia (versione compresa). Prima scrive in plugins/limam-adhibere le
+copie di limam-adhibere con i comandi in sanscrito, quenya, klingon e gallese (ARCANE).
 
 Lancialo dopo ogni modifica a plugins/:  python3 lingue/genera.py
 """
@@ -19,6 +20,7 @@ LINGUE = ("it", "en")
 LIMITE_DESCRIZIONE = 1024
 
 # Incantesimo e sigla: latino, italiano, inglese. Una sigla non indica mai due skill diverse.
+# Gli incantesimi di ARCANE non stanno qui: restano uguali in tutti i set.
 COMANDI = [
     (("Alea iacta est", "AIE"), ("Il dado è tratto", "DT"), ("The die is cast", "TDC")),
     (("Festina lente", "FL"), ("Chi va piano", "CVP"), ("Make haste slowly", "MHS")),
@@ -76,6 +78,17 @@ SOLO_GUIDA = [
     ("](../README.md)", "](../../../README.md)", "](../../../README.md)"),
 ]
 
+# Limam adhibere con i comandi in altre lingue: skill, completa (-LA) e rapida (-CLA), con le sigle.
+# Il resto della skill viene da lingue/arcane/<skill>.md: frontmatter, poi la frase che prende il
+# posto di "Passare la lima", le grafie accettate e la sezione finale "## Il comando".
+ARCANE = [
+    ("pariksam-kuru", ("Parīkṣāṃ kuru", "PK"), ("Śīghraṃ parīkṣāṃ kuru", "SPK")),
+    ("sanwe-kenta", ("Sanwe-kenta", "SK"), ("Linta sanwe-kenta", "LSK")),
+    ("qech-yipoj", ("qech yIpoj", "QP"), ("nom qech yIpoj", "NQP")),
+    ("profar-syniad", ("Profa'r syniad", "PS"), ("Profa'r syniad yn gyflym", "PSG")),
+]
+LIMAM = RADICE / "plugins" / "limam-adhibere" / "skills" / "limam-adhibere" / "SKILL.md"
+
 PACCHETTI = {
     "it": ("tutto", "Tutto l'armamentarium con i comandi in italiano: tutte le skill di tutti i "
                     "plugin, con i loro hook. Non installarlo insieme a omnia o all."),
@@ -125,6 +138,27 @@ def descrizione(testo):
     return " ".join(m.group(1).split()) if m else ""
 
 
+def arcane():
+    """Scrive accanto a limam-adhibere le sue copie con i comandi di ARCANE."""
+    corpo = LIMAM.read_text(encoding="utf-8").split("---\n", 2)[2]
+    for skill, (completa, sigla), (rapida, sigla_rapida) in ARCANE:
+        fonte = RADICE / "lingue" / "arcane" / f"{skill}.md"
+        _, frontmatter, resto = fonte.read_text(encoding="utf-8").split("---\n", 2)
+        frase, grafie, comando = resto.strip().split("\n\n", 2)
+        testo = corpo
+        for vecchio, nuovo in (('"Passare la lima"', frase), ("Le sigle valgono", f"{grafie}\n\nLe sigle valgono"),
+                               ("Limam adhibere", completa), ("Celeri lima adhibita", rapida)):
+            assert vecchio in testo, f"{LIMAM.relative_to(RADICE)}: manca «{vecchio}»"
+            testo = testo.replace(vecchio, nuovo)
+        for vecchia, nuova in (("CLA", sigla_rapida), ("LA", sigla)):
+            testo = re.sub(rf"(?<![\w-])-{vecchia}(?![\w-])", "-" + nuova, testo)
+        nota = (f"<!-- Generata da lingue/genera.py da lingue/arcane/{skill}.md e dal corpo di "
+                f"limam-adhibere: non modificarla a mano. -->\n")
+        destinazione = LIMAM.parent.parent / skill / "SKILL.md"
+        destinazione.parent.mkdir(exist_ok=True)
+        destinazione.write_text(f"---\n{frontmatter}---\n\n{nota}{testo.rstrip()}\n\n{comando}\n", encoding="utf-8")
+
+
 def file_sorgente():
     elenco = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard", "plugins"],
                             cwd=RADICE, capture_output=True, text=True, check=True).stdout.split()
@@ -163,6 +197,7 @@ def pacchetto(omnia, lingua, traduci):
 
 
 def main():
+    arcane()
     sorgenti = file_sorgente()
     catalogo = json.loads(MARKETPLACE.read_text(encoding="utf-8"))
     nomi = {nome for nome, _ in PACCHETTI.values()}
