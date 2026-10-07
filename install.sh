@@ -3,7 +3,8 @@
 # il marketplace, installa il pacchetto con tutte le skill e i loro hook nella lingua scelta (omnia
 # latino, tutto italiano, all inglese) a livello utente se l'organizzazione non ne dà già uno da
 # claude.ai, ne accende le skill in skillOverrides e accende l'aggiornamento automatico del
-# marketplace. Si può rilanciare quante volte vuoi: con un'altra lingua cambia pacchetto. I livelli
+# marketplace. Ogni pacchetto ha anche gli incantesimi di limam-adhibere in sanscrito, quenya,
+# klingon e gallese. Si può rilanciare quante volte vuoi: con un'altra lingua cambia pacchetto. I livelli
 # progetto e locale valgono per la cartella da cui lo lanci.
 # Senza lingua la chiede (invio = latino). Prima di cancellare i file rimasti chiede conferma; con -y
 # li cancella senza chiedere e, se manca la lingua, usa il latino.
@@ -22,6 +23,7 @@ for a in "$@"; do
   esac
 done
 if [ -z "$LINGUA" ] && [ "$SI" = no ] && { : </dev/tty; } 2>/dev/null; then
+  echo "Gli incantesimi in sanscrito, quenya, klingon e gallese di Limam adhibere ci sono in tutte e tre."
   read -r -p "Lingua dei comandi: latino (la), italiano (it), inglese (en)? [la] " LINGUA </dev/tty || LINGUA=
 fi
 case "${LINGUA:-la}" in

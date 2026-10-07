@@ -17,6 +17,11 @@ come si installa quel set, come si usano i comandi e cosa fanno.
 Cambiano solo incantesimi, sigle e comandi slash. Le istruzioni delle skill restano in italiano,
 e Claude risponde nella tua lingua.
 
+In tutti e tre i set *Limam adhibere* (`-LA`) e *Celeri lima adhibita* (`-CLA`) hanno anche un
+incantesimo in lingue più antiche o più lontane, uguale ovunque: in sanscrito *Parīkṣāṃ kuru*
+(`-PK`), in quenya, l'elfico di Tolkien, *Sanwe-kenta* (`-SK`), in klingon *qech yIpoj* (`-QP`), in
+gallese, la lingua di Merlino, *Profa'r syniad* (`-PS`). Le versioni rapide sono nelle guide.
+
 ## Installa
 
 Da una shell, anche dal terminale di VS Code:
@@ -27,7 +32,7 @@ curl -fsSL https://raw.githubusercontent.com/rrambaldi/claude-plugins/main/insta
 
 Dentro Claude Code puoi lanciarlo così com'è mettendo `!` davanti. Ti chiede la lingua dei
 comandi: latino (invio), italiano o inglese. Per sceglierla subito: `… | bash -s -- it` (o `la`,
-`en`).
+`en`). Gli incantesimi in sanscrito, quenya, klingon e gallese arrivano con qualunque lingua.
 
 Cosa fa:
 
