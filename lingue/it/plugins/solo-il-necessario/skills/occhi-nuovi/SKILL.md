@@ -34,7 +34,8 @@ alla prova.
 
 ### 2. Lancia il subagente
 
-Un subagente nuovo, di uso generale, con il modello più forte che hai. Mai un fork: eredita la
+Un subagente nuovo, di uso generale, con il modello `sonnet` (`opus` se il diff tocca soldi,
+dati o sicurezza). Mai un fork: eredita la
 conversazione, cioè le assunzioni che non deve avere. Il prompt, riempito:
 
 ```
